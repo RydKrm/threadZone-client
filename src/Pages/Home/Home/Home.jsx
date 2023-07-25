@@ -5,6 +5,7 @@ const Home = () => {
                 Hello world!
             </h1>
             <h2>git hub merge collaborate</h2>
+            <h2>git hub merge collaborate2</h2>
         </div>
     );
 };
