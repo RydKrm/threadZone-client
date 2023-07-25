@@ -1,14 +1,8 @@
 const Home = () => {
     return (
-        <div>
-            <h1>hellow word</h1>
-            <h2>This is changed</h2> 
-            <h3>Checking the change </h3>
-            <h3> Changed make again </h3>
-            <h3> Change making last time</h3>
-            <h3>A new branch created</h3>
-            <h4>Riyad just change code to check other code </h4>
-        </div>
+<div>
+      <h2> Change code for resolved </h2>
+      </div>
     );
 };
 
