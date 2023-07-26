@@ -10,7 +10,7 @@ const NavBar = () => {
     }
     const commonLink = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to=''>Product list</Link></li>
+        <li><Link to='/product'>Product list</Link></li>
         <li><Link to=''>Shop list</Link></li>
         <li><Link to=''>Category</Link></li>
         <li><Link to=''>About Us</Link></li>
