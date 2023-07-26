@@ -15,9 +15,18 @@ import Product from "../Pages/Product/Product";
             element:<Home></Home>
         },
         {
-          path:'/product',
-          element : <Product/>
-        }
+            path:'login',
+            element:<LogIn></LogIn>
+        },
+        {
+            path:'registration',
+            element:<Registration></Registration>
+        },
+        {
+            path:'/product',
+            element:<Product/>
+        },
+       
       ]  
     }
   ])
