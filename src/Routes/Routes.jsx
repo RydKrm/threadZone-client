@@ -4,6 +4,8 @@ import {
 import Home from "../Pages/Home/Home/Home";
 import Main from "../Layout/Main";
 import Product from "../Pages/Product/Product";
+import LogIn from "../Pages/LogIn/LogIn";
+import Registration from "../Pages/Registration/Registration";
 
   export const router =createBrowserRouter([
     {
