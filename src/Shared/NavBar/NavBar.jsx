@@ -1,5 +1,13 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 const NavBar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error));
+    }
     const commonLink = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to=''>Product list</Link></li>
@@ -28,7 +36,25 @@ const NavBar = () => {
             </div>
 
             <div className="navbar-end">
-                <Link to='/login'><li>Login</li></Link>
+                {
+                    user ? <>
+                        <div style={{
+                            width: "25px",
+                            height: "25px",
+                            borderRadius: "50%", // This will create a circular shape
+                            overflow: "hidden" // To clip the image within the circular container
+                        }}>
+                            <img
+                                src={user.photoURL}
+                                alt="User"
+                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                            />
+                        </div>
+                        <button onClick={handleLogOut} className="btn btn-ghost btn-sm">LogOut</button>
+                    </> : <>
+                        <li><Link to="/login">Login</Link></li>
+                    </>
+                }
             </div>
         </div>
     );

@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import img from '../../assets/Ecommerce image/login/login.jpg'
+import SocialLogIn from "../SocialLogIn/SocialLogIn";
 
 const Login = () => {
 
@@ -53,8 +54,9 @@ const Login = () => {
                         <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
                             <div className="flex flex-row items-center justify-center lg:justify-start">
                                 <p className="mb-0 mr-4 text-lg">Sign in with</p>
+                                <SocialLogIn></SocialLogIn>
                             </div>
-
+                                
                             <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
                                 <p className="mx-4 mb-0 text-center font-semibold dark:text-white">Or</p>
                             </div>
