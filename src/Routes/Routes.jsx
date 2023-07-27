@@ -6,6 +6,7 @@ import Main from "../Layout/Main";
 import LogIn from "../Pages/LogIn/LogIn";
 import Registration from "../Pages/Registration/Registration";
 import ProductContainer from "../Pages/Product/ProductContainer";
+import ShoppingCart from "../Pages/Home/ShoppingCart/ShoppingCart";
 
   export const router =createBrowserRouter([
     {
@@ -27,6 +28,10 @@ import ProductContainer from "../Pages/Product/ProductContainer";
         {
             path:'/product',
             element:<ProductContainer/>
+        },
+        {
+            path:'shopCart',
+            element:<ShoppingCart/>
         },
        
       ]  

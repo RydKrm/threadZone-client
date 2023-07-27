@@ -10,7 +10,7 @@ import img7 from '../../../assets/Slider Image/image-7.png'
 
 const Banner = () => {
     return (
-        <Carousel>
+        <Carousel className=''>
             <div>
                 <img className='rounded-md' src={img1} />
             </div>
