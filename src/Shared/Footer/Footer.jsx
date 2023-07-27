@@ -30,7 +30,7 @@ const Footer = () => {
                     <a className="link link-hover">Cookie policy</a>
                 </div>
             </div>
-            <div className="footer footer-center p-4 bg-base-300 text-base-content">
+            <div className="footer footer-center p-4 bg-gray-300 text-base-content">
                 <div>
                     <p>Copyright © {currentYear} - All right reserved by ThreadZone Emart Ltd</p>
                 </div>
