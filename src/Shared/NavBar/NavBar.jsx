@@ -15,6 +15,7 @@ const NavBar = () => {
         <li><Link to=''>Category</Link></li>
         <li><Link to=''>About Us</Link></li>
         <li><Link to=''>Contract Us</Link></li>
+        <li><Link to='/shopCart'>Shopping Cart</Link></li>
     </>
     return (
         <div className="navbar max-w-screen-xl bg-base-100">
