@@ -2,15 +2,26 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    colors: {
-      dark: "#363538",
-      lightDark: "#8D8C8A",
-      lightWhite: "#F6F6F6",
-      darkBlue: "#408697",
-      lightBlue: "#52D6F4",
+    extend: {
+      colors: {
+        cDark: "#03001c",
+        cLightDark: "#8D8C8A",
+        cLightWhite: "#F6F6F6",
+        cDarkBlue: "#0079FF",
+        cLightBlue: "#45CFDD",
+        cLightDarkBlue: "#79E0EE",
+        cLightLightBlue: "#98EECC",
+        cBlueGreen: "#D0F5BE",
+        cLightBlueGreen: "#FBFFDC",
+        cPurple: "#8062D6",
+        cViolate: "#810CA8",
+        cPink: "#FB2576",
+      },
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+        roboto: ["Roboto","sans-serif"]
+      },
     },
-    extend: {},
   },
   plugins: [require("daisyui")],
 };
-
