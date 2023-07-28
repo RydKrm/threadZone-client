@@ -3,7 +3,7 @@ import React from 'react';
 const ProductDetailsImage = ({image}) => {
     return (
          <div>
-          <div>
+          <div className='w-[650px]'>
                <img id="main-img" src={image} className="w-full" />
           </div>
 

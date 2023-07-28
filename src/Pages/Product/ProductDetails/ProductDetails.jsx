@@ -12,7 +12,7 @@ const ProductDetails = () => {
       <ProductDetailsImage image={image} />
         {/* <!-- ---- Product Content  --->  */}
      <ProductDetailsInformation productData={productData[params.id-1]}/>  
-         {/* <!-- ---- End Product Content  ---> */}
+         {/* <!-- ---- End Product Content  ---> */  }
 
   </div> 
  

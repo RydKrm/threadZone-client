@@ -9,7 +9,7 @@ const ProductSingle = (params) => {
   const wordsArray = discription.split(/\s+/);
   const first20WordsArray = wordsArray.slice(0, 20);
   const description = first20WordsArray.join(' ');
-
+ 
     return (
       <div className="group rounded bg-white shadow-xl overflow-hidden flex flex-col md:flex-row">
      <div className="relative w-3/5 ms-10 my-5">

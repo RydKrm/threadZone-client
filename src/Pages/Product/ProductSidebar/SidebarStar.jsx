@@ -8,7 +8,7 @@ const SidebarStar = ({starType}) => {
  // console.log("Value -> ",typeof e.target.value);
      dispatch({type:"FILTER_BY_RATING",payload:e.target.value});
  }
-
+  
     return ( 
        <div className="relative pt-5">
             {/* Category start  */}
