@@ -10,7 +10,7 @@ const ProductListView = ({productList}) => {
             </ProductListSingle>)
          }           
         </div>
-  );
+  ); 
 };
 
 export default ProductListView;

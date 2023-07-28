@@ -11,6 +11,6 @@ const ProductGridView = ({productList}) => {
          }           
         </div>
     );
-};
+};  
 
 export default ProductGridView;

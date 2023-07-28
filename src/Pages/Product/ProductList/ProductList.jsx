@@ -9,7 +9,7 @@ const ProductList = ({productList}) => {
                 
             </ProductSingle>)
          }           
-        </div>
+        </div> 
     );
 };
 

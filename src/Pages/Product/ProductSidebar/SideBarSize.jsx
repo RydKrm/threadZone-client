@@ -10,7 +10,7 @@ const SideBarSize = () => {
   }
 
     return (
-        <div className='mt-5'>
+        <div className='mt-5'>  
           <h3 className='text-xl mt-5 text-gray-800 mb-3 uppercase font-medium'>Size</h3>
           <div className="flex items-center gap-2">
             {/* single item */}

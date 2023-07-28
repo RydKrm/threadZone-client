@@ -6,8 +6,9 @@ const ProductContainer = () => {
     return (
         <ProductProvider>
             <Product />
+            
         </ProductProvider>
     );
 };
 
-export default ProductContainer;
+export default ProductContainer;  
