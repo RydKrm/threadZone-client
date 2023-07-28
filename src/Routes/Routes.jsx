@@ -5,8 +5,6 @@ import Home from "../Pages/Home/Home/Home";
 import Main from "../Layout/Main";
 import LogIn from "../Pages/LogIn/LogIn";
 import Registration from "../Pages/Registration/Registration";
-import ProductContainer from "../Pages/Product/ProductContainer";
-import ShoppingCart from "../Pages/Home/ShoppingCart/ShoppingCart";
 
   export const router =createBrowserRouter([
     {
@@ -33,6 +31,10 @@ import ShoppingCart from "../Pages/Home/ShoppingCart/ShoppingCart";
             path:'shopCart',
             element:<ShoppingCart/>
         },
+        {
+          path:'product/productDetails/:id',
+          element:<ProductDetails />
+        }
        
       ]  
     }
