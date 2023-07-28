@@ -16,6 +16,7 @@ const NavBar = () => {
         <li><Link to=''>About Us</Link></li>
         <li><Link to=''>Contract Us</Link></li>
         <li><Link to='/shopCart'>Shopping Cart</Link></li>
+
     </>
     return (
         <div className="navbar max-w-screen-xl bg-base-100">
@@ -51,6 +52,7 @@ const NavBar = () => {
                                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
                             />
                         </div>
+                        <li><Link to='/dashboard'>Dashboard</Link></li>
                         <button onClick={handleLogOut} className="btn btn-ghost btn-sm">LogOut</button>
                     </> : <>
                         <li><Link to="/login">Login</Link></li>
