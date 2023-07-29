@@ -8,6 +8,8 @@ import Registration from "../Pages/Registration/Registration";
 import ProductContainer from "../Pages/Product/ProductContainer";
 import ShoppingCart from "../Pages/Home/ShoppingCart/ShoppingCart"
 import ProductDetails from "../Pages/Product/ProductDetails/ProductDetails";
+import ShopContainer from "../Pages/Shop/ShopContainer";
+import ShopProductContainer from "../Pages/Shop/ShopProductContainer";
 
   export const router =createBrowserRouter([
     {
@@ -37,6 +39,14 @@ import ProductDetails from "../Pages/Product/ProductDetails/ProductDetails";
         {
           path:'product/productDetails/:id',
           element:<ProductDetails />
+        },
+        {
+          path : 'shopList',
+          element : <ShopContainer />
+        },
+        {
+          path : 'shopSingle/:id',
+          element : <ShopProductContainer />
         }
        
       ]  
