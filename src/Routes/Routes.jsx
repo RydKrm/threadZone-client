@@ -11,6 +11,8 @@ import Address from "../Pages/Dashboard/Address/Address";
 import ProductContainer from "../Pages/Product/ProductContainer";
 import ShoppingCart from "../Pages/Home/ShoppingCart/ShoppingCart"
 import ProductDetails from "../Pages/Product/ProductDetails/ProductDetails";
+import ShopContainer from "../Pages/Shop/ShopContainer";
+import ShopProductContainer from "../Pages/Shop/ShopProductContainer";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ export const router = createBrowserRouter([
         {
           path:'product/productDetails/:id',
           element:<ProductDetails />
+        },
+        {
+          path : 'shopList',
+          element : <ShopContainer />
+        },
+        {
+          path : 'shopSingle/:id',
+          element : <ShopProductContainer />
         }
 
     ]
