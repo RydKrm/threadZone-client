@@ -1,5 +1,5 @@
 import productData from '../../public/data/productData.json';
-import React, { createContext, useReducer, useContext, useEffect } from 'react';
+import React, { createContext, useReducer,useEffect } from 'react';
 
 const ProductContext = createContext();
 
@@ -14,6 +14,7 @@ const initialState = {
   category:null
 };
 
+
 const productReducer = (state, action) => {
   switch (action.type) {
     case 'SET_PRODUCTS':
@@ -23,7 +24,6 @@ const productReducer = (state, action) => {
     case 'FILTER_BY_RATING':
       return { ...state, filterByRating: action.payload };
     case 'FILTER_BY_PRICE' : 
-            console.log("payload ",typeof action.payload.min)
     return {...state,minPrice:action.payload.min,maxPrice:action.payload.max};
     case 'SIZE_BY':
         return {...state,size : action.payload}  ;
