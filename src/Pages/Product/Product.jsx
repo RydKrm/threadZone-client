@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Product.css';
 import SidebarCategory from './ProductSidebar/SidebarCategory';
-import SidebarStar from "./ProductSidebar/SidebarStar"
+import SidebarStar from "./ProductSidebar/SidebarStar";
 import SidebarPrice from './ProductSidebar/SidebarPrice';
 import SideBarSize from './ProductSidebar/SideBarSize';
 import SidebarColor from './ProductSidebar/SidebarColor';
