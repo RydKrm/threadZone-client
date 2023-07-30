@@ -3,8 +3,8 @@ import React from 'react';
 const TemplateDetailsImage = ({image}) => {
     return (
          <div>
-          <div className='w-[650px]'>
-               <img id="main-img" src={image} className="w-full" />
+          <div className='w-[450px]'>
+               <img id="main-img" src={image} className="" />
           </div>
 
      <div className="grid grid-cols-5 gap-4 mt-4 ">

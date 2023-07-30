@@ -9,10 +9,10 @@ import ShoppingCart from "../Pages/Home/ShoppingCart/ShoppingCart";
 import Dashboard from "../Layout/Dashboard";
 import Address from "../Pages/Dashboard/Address/Address";
 import ProductContainer from "../Pages/Product/ProductContainer";
-import ShoppingCart from "../Pages/Home/ShoppingCart/ShoppingCart"
 import ProductDetails from "../Pages/Product/ProductDetails/ProductDetails";
 import ShopContainer from "../Pages/Shop/ShopContainer";
 import ShopProductContainer from "../Pages/Shop/ShopProductContainer";
+import TemplateDetails from "../Shared/Template/TemplateDetails/TemplateDetails";
 
 export const router = createBrowserRouter([
   {
@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
         },
         {
           path:'product/productDetails/:id',
-          element:<ProductDetails />
+          element:<TemplateDetails />
         },
         {
           path : 'shopList',

@@ -33,7 +33,7 @@ const TemplateDetailsInformation = ({productData}) => {
 
           <div className="mt-4 flex items-baseline gap-3 ">
            <span className="text-primary font-semibold text-xl ">${price}</span>
-          <span className="text-gray-500 text-base line-through">${discount}</span>
+          <span className="text-gray-500 text-base line-through">${price+discount}</span>
           </div>
           <p className="mt-4 text-gray-600">{discription} </p>
 

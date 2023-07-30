@@ -7,14 +7,17 @@ const ProductListTop = ({view,setView}) => {
    const {dispatch} = useContext(ProductContext);
 
    const setProduct = (e) =>{
-      console.log("function value",e.target.value)
+     // console.log("function value",e.target.value)
+     if(e.target.value === 'default'){
+      dispatch({type:"DEFAULT"});
+     }
       dispatch({type:"SORT_BY",payload:e.target.value})
    } 
 
     return (
          <div className='mb-4 flex items-center'> 
         <select name="sorting" onChange={setProduct} id="sorting"  className='w-44 text-sm text-gray-600 border border-gray-300 p-3 shadow-sm rounded focus:ring-cDrkBlue focus:border-cDarkBlue' >
-            <option >Default Value</option>
+            <option value="default">Default Value</option>
             <option  value="HighToLow"> High To Low</option>
             <option  value="lowToHigh"> Low To High</option>
             <option value="mostSelling"> Most Selling </option>
