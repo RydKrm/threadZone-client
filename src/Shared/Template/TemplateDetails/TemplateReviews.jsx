@@ -22,7 +22,7 @@ const TemplateReviews = () => {
                 <div className="h-20 w-44 ms-20 mt-10">
                     <img src={review.image} className='w-36 h-20 shadow-md p-1' alt="" />
                 </div>
-                <div className="flex flex-col text-center ms-5">
+                <div className="flex flex-col text-left ms-5">
                       <div className=" pl-4 italic my-4">
                         <p className="text-gray-600">" {review.description} "  </p>
                         </div>
