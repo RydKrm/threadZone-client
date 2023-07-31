@@ -3,19 +3,24 @@ import { useParams } from 'react-router-dom';
 import productData from '../../../../public/data/productData.json'
 import ProductDetailsImage from './TemplateDetailsImage';
 import ProductDetailsInformation from './TemplatetDetailsInformation';
+import TemplateReviews from './TemplateReviews';
+import TemplateAddReview from './TemplateAddReview';
 const TemplateDetails = () => {
     const params = useParams();
-    const {image} = productData[params.id-1];
+    const product = productData[params.id-1];
  return (
-
-    <div className="container pt-4 pb-6 grid lg:grid-cols-2 gap-6 ">
-      <ProductDetailsImage image={image} />
+  
+   <>
+   <div className="container pt-4 pb-6 grid lg:grid-cols-2 gap-6 ">
+      <ProductDetailsImage image={product.image} />
         {/* <!-- ---- Product Content  --->  */}
-     <ProductDetailsInformation productData={productData[params.id-1]}/>  
+     <ProductDetailsInformation productData={product}/>  
          {/* <!-- ---- End Product Content  ---> */  }
-
-  </div> 
- 
+   </div> 
+   <TemplateAddReview product={product}/>
+   <TemplateReviews />
+   </>
+    
  );
 };
 

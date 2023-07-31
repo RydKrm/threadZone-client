@@ -5,7 +5,7 @@ import { GrUserManager } from 'react-icons/gr';
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
-    console.log(user?.photoURL, user?.displayName)
+   // console.log(user?.photoURL, user?.displayName)
     return (
         <div>
             <div className="drawer lg:drawer-open">
@@ -38,9 +38,10 @@ const Dashboard = () => {
                             <li className="mt-5">
                                 <span className="text-red-600">My Order History</span>
                             </li>
-                            <li><Link to=''>My Returns</Link></li>
-                            <li><Link to=''>My Cancellations</Link></li>
-                            <li><Link to=''>My Review</Link></li>
+                            <li><Link to='/dashboard/returnList'>My Returns</Link></li>
+                            <li><Link to='/dashboard/orderList'>My Orders</Link></li>
+                            <li><Link to='/dashboard/previousOrderList'>My Previous Orders</Link></li>
+                            <li><Link to='/dashboard/reviewList'>My Review</Link></li>
                             <li className="mt-5">
 
                                 <span className="text-red-600">Payment Method</span>
