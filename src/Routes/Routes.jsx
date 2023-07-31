@@ -9,10 +9,14 @@ import ShoppingCart from "../Pages/Home/ShoppingCart/ShoppingCart";
 import Dashboard from "../Layout/Dashboard";
 import Address from "../Pages/Dashboard/Address/Address";
 import ProductContainer from "../Pages/Product/ProductContainer";
-import ShoppingCart from "../Pages/Home/ShoppingCart/ShoppingCart"
 import ProductDetails from "../Pages/Product/ProductDetails/ProductDetails";
 import ShopContainer from "../Pages/Shop/ShopContainer";
 import ShopProductContainer from "../Pages/Shop/ShopProductContainer";
+import TemplateDetails from "../Shared/Template/TemplateDetails/TemplateDetails";
+import CustomerReturn from "../Pages/Dashboard/CustomerDashboard/CustomerReturn/CustomerReturn";
+import CustomerOrder from "../Pages/Dashboard/CustomerDashboard/CustomerOrder/CustomerOrder";
+import CustomerPreviousOrder from "../Pages/Dashboard/CustomerDashboard/CustomerPreviousOrder/CustomerPreviousOrder";
+import CustomerReviewList from "../Pages/Dashboard/CustomerDashboard/CustomerReviewList/CustomerReviewList";
 
 export const router = createBrowserRouter([
   {
@@ -41,7 +45,7 @@ export const router = createBrowserRouter([
         },
         {
           path:'product/productDetails/:id',
-          element:<ProductDetails />
+          element:<TemplateDetails />
         },
         {
           path : 'shopList',
@@ -62,6 +66,22 @@ export const router = createBrowserRouter([
         path: 'address',
         element: <Address></Address>
       },
+      {
+        path: 'returnList',
+        element : <CustomerReturn/>
+      },
+      {
+        path : 'orderList',
+        element : <CustomerOrder />
+      },
+      {
+        path :'previousOrderList',
+        element : <CustomerPreviousOrder/>
+      },
+      {
+        path : 'reviewList',
+        element : <CustomerReviewList />
+      }
     ]
   }
 ])

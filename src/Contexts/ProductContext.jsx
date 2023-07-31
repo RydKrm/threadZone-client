@@ -30,13 +30,24 @@ const productReducer = (state, action) => {
     case 'FILTER_BY_COLOR' :
        return {...state, color:action.payload}  ;
     case 'FILTER_BY_CATEGORY' :
-        return {...state,category : action.payload}     
+        return {...state,category : action.payload};
+    case 'DEFAULT' :
+      return {...state,
+        sortBy: null, 
+        filterByRating: null,
+        minPrice:null,
+        maxPrice : null, 
+        size:null,
+        color:null,
+        category:null}     
     default:
       return state;
   }
 };
 
 const ProductProvider = ({ children }) => {
+  //const [state,setState] = usesState([]);
+
   const [state, dispatch] = useReducer(productReducer, initialState);
 
   useEffect(() => {

@@ -16,6 +16,7 @@ const NavBar = () => {
         <li><Link to=''>About Us</Link></li>
         <li><Link to=''>Contract Us</Link></li>
         <li><Link to='/shopCart'>Shopping Cart</Link></li>
+        
 
     </>
     return (
