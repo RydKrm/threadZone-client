@@ -35,6 +35,28 @@ export const router = createBrowserRouter([
         path: 'registration',
         element: <Registration></Registration>
       },
+<<<<<<< HEAD
+      {
+        path: '/product',
+        element: <ProductContainer />
+      },
+      {
+        path: 'shopCart',
+        element: <ShoppingCart />
+      },
+      {
+        path: 'product/productDetails/:id',
+        element: <ProductDetails />
+      },
+      {
+        path: 'shopList',
+        element: <ShopContainer />
+      },
+      {
+        path: 'shopSingle/:id',
+        element: <ShopProductContainer />
+      }
+=======
         {
             path:'/product',
             element:<ProductContainer/>
@@ -55,6 +77,7 @@ export const router = createBrowserRouter([
           path : 'shopSingle/:id',
           element : <ShopProductContainer />
         }
+>>>>>>> 3649dfeb9195e9859dca78eb0328af8898ed76dd
 
     ]
   },

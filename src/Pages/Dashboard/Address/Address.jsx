@@ -7,7 +7,7 @@ const Address = () => {
                 <form >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
                         <div>
-                            <label htmlFor="fullName" className="block text-gray-600">Full Name</label>
+                            <label htmlFor="fullName" className="block text-gray-600 font-poppins">Full Name</label>
                             <input type="text" id="fullName" name="fullName" className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" required />
                         </div>
                         <div>

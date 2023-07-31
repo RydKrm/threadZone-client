@@ -6,9 +6,9 @@ const GallerySection = () => {
     useEffect(() => {
         fetch('./data/gallery.json')
             .then(res => res.json())
-            .then(data => setGallery(data.gallery));
+            .then(data => setGallery(gallery));
     }, []);
-
+  console.log(galleries)
     return (
         <div className='max-w-screen-xl mx-auto my-10'>
             <h1 className='text-4xl font-bold text-center my-10'>Gallery Area</h1>
