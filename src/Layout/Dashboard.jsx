@@ -2,17 +2,21 @@ import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProvider';
 import { GrUserManager } from 'react-icons/gr';
+import NavBar from '../Shared/NavBar/NavBar';
+import Footer from '../Shared/Footer/Footer';
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
-   // console.log(user?.photoURL, user?.displayName)
+    // console.log(user?.photoURL, user?.displayName)
     return (
         <div>
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     {/* Page content here */}
+
                     <Outlet></Outlet>
+
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
                 </div>
@@ -51,6 +55,7 @@ const Dashboard = () => {
 
                                 <Link className="text-red-600">My WishList</Link>
                             </li>
+                            <li><Link to='/'>Home</Link></li>
 
 
                         </ul>

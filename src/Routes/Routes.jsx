@@ -35,7 +35,22 @@ export const router = createBrowserRouter([
         path: 'registration',
         element: <Registration></Registration>
       },
-<<<<<<< HEAD
+      {
+        path: '/product',
+        element: <ProductContainer />
+      },
+      {
+        path: 'shopCart',
+        element: <ShoppingCart />
+      },
+      {
+        path: 'shopList',
+        element: <ShopContainer />
+      },
+      {
+        path: 'shopSingle/:id',
+        element: <ShopProductContainer />
+      },
       {
         path: '/product',
         element: <ProductContainer />
@@ -46,7 +61,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'product/productDetails/:id',
-        element: <ProductDetails />
+        element: <TemplateDetails />
       },
       {
         path: 'shopList',
@@ -56,28 +71,6 @@ export const router = createBrowserRouter([
         path: 'shopSingle/:id',
         element: <ShopProductContainer />
       }
-=======
-        {
-            path:'/product',
-            element:<ProductContainer/>
-        },
-        {
-            path:'shopCart',
-            element:<ShoppingCart/>
-        },
-        {
-          path:'product/productDetails/:id',
-          element:<TemplateDetails />
-        },
-        {
-          path : 'shopList',
-          element : <ShopContainer />
-        },
-        {
-          path : 'shopSingle/:id',
-          element : <ShopProductContainer />
-        }
->>>>>>> 3649dfeb9195e9859dca78eb0328af8898ed76dd
 
     ]
   },
@@ -91,19 +84,19 @@ export const router = createBrowserRouter([
       },
       {
         path: 'returnList',
-        element : <CustomerReturn/>
+        element: <CustomerReturn />
       },
       {
-        path : 'orderList',
-        element : <CustomerOrder />
+        path: 'orderList',
+        element: <CustomerOrder />
       },
       {
-        path :'previousOrderList',
-        element : <CustomerPreviousOrder/>
+        path: 'previousOrderList',
+        element: <CustomerPreviousOrder />
       },
       {
-        path : 'reviewList',
-        element : <CustomerReviewList />
+        path: 'reviewList',
+        element: <CustomerReviewList />
       }
     ]
   }

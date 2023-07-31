@@ -16,15 +16,24 @@ const SocialLogIn = () => {
             .then(result => {
                 const loggedInUser = result.user;
                 console.log(loggedInUser)
+                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, photoURL: loggedInUser.photoURL }
+                return fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                });
+            })
+            .then(res => res.json())
+            .then(() => {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'login Successfully',
+                    title: 'User created successfully.',
                     showConfirmButton: false,
                     timer: 1500
-                })
-            })
-            .then(() => {
+                });
                 navigate(from, { replace: true })
             })
     }
@@ -34,15 +43,24 @@ const SocialLogIn = () => {
             .then(result => {
                 const loggedInUser = result.user;
                 console.log(loggedInUser)
+                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
+                return fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                });
+            })
+            .then(res => res.json())
+            .then(() => {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Login Successfully',
+                    title: 'User created successfully.',
                     showConfirmButton: false,
                     timer: 1500
-                })
-            })
-            .then(() => {
+                });
                 navigate(from, { replace: true })
             })
     }
