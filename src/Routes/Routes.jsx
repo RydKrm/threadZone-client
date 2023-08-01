@@ -70,34 +70,35 @@ export const router = createBrowserRouter([
       {
         path: 'shopSingle/:id',
         element: <ShopProductContainer />
+      },
+      {
+        path: 'dashboard',
+        element: <Dashboard />,
+        children: [
+          {
+            path: 'address',
+            element: <Address></Address>
+          },
+          {
+            path: 'returnList',
+            element: <CustomerReturn />
+          },
+          {
+            path: 'orderList',
+            element: <CustomerOrder />
+          },
+          {
+            path: 'previousOrderList',
+            element: <CustomerPreviousOrder />
+          },
+          {
+            path: 'reviewList',
+            element: <CustomerReviewList />
+          }
+        ]
       }
 
-    ]
-  },
-  {
-    path: 'dashboard',
-    element: <Dashboard></Dashboard>,
-    children: [
-      {
-        path: 'address',
-        element: <Address></Address>
-      },
-      {
-        path: 'returnList',
-        element: <CustomerReturn />
-      },
-      {
-        path: 'orderList',
-        element: <CustomerOrder />
-      },
-      {
-        path: 'previousOrderList',
-        element: <CustomerPreviousOrder />
-      },
-      {
-        path: 'reviewList',
-        element: <CustomerReviewList />
-      }
+
     ]
   }
 ])

@@ -23,7 +23,7 @@ const Dashboard = () => {
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <div className='menu p-4 w-80 h-full text-base-content'>
-                        <div className="bg-base-200 mb-5 rounded-md">
+                        <div className="bg-base-200 mb-5 h-[15%] rounded-md">
                             <div className='flex items-center gap-4 '>
                                 <img className=' ps-5  w-25 h-[40px]' src={user?.photoURL} alt="" />
                                 <div className='pt-5 pb-5 pl-5'>
@@ -32,7 +32,7 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
-                        <ul className="bg-base-200 rounded-md p-5 pl-10">
+                        <ul className="bg-base-200 rounded-md h-[80%] p-5 pl-10">
                             <li className="">
                                 <span className="text-red-600">Manage Account</span>
                             </li>
