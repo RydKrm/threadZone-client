@@ -1,12 +1,14 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
+    const navigate = useNavigate()
     const handleLogOut = () => {
         logOut()
             .then(() => { })
             .catch(error => console.log(error));
+        navigate('/')
     }
     const commonLink = <>
         <li><Link to='/'>Home</Link></li>
@@ -16,7 +18,7 @@ const NavBar = () => {
         <li><Link to=''>About Us</Link></li>
         <li><Link to=''>Contract Us</Link></li>
         <li><Link to='/shopCart'>Shopping Cart</Link></li>
-        
+
 
     </>
     return (

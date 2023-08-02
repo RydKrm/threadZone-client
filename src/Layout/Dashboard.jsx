@@ -45,11 +45,22 @@ const Dashboard = () => {
                                     <>
                                         <li><Link to='/'><FaHome />Home</Link></li>
                                         <li><Link to='/dashboard/manageUsers'>Manage Users</Link></li>
+                                        <li><Link to='/dashboard'>Category Status</Link></li>
+                                        <li><Link to='/dashboard'>Shop Add Request</Link></li>
+                                        <li><Link to='/dashboard'>Product Add Request </Link></li>
+                                        <li><Link to='/dashboard'>View All Product</Link></li>
+                                        <li><Link to='/dashboard'>View All Shop</Link></li>
 
                                     </>
                                 ) : (isSeller ? (
                                     <>
                                         <li><Link to='/'><FaHome />Home</Link></li>
+                                        <li><Link to='/dashboard'>Complete Order List</Link></li>
+                                        <li><Link to='/dashboard'>Return product List</Link></li>
+                                        <li><Link to='/dashboard'>Add Product</Link></li>
+                                        <li><Link to='/dashboard'>Set Status</Link></li>
+                                        <li><Link to='/dashboard'>Change Product Info</Link></li>
+                                        <li><Link to='/dashboard'>Change Shop Info</Link></li>
                                     </>
                                 ) : (
                                     <>
