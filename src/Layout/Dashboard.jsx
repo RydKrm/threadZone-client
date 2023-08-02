@@ -1,13 +1,20 @@
 import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProvider';
-import { GrUserManager } from 'react-icons/gr';
-import NavBar from '../Shared/NavBar/NavBar';
-import Footer from '../Shared/Footer/Footer';
+import useAdmin from '../Component/hook/useAdmin';
+import useSeller from '../Component/hook/useSeller';
+import { FaHome } from 'react-icons/fa';
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
+
+    const [isAdmin, isAdminLoading] = useAdmin();
+    const [isSeller, isSellerLoading] = useSeller();
     // console.log(user?.photoURL, user?.displayName)
+
+    if (isAdminLoading || isSellerLoading) {
+        return <div>Loading...</div>;
+    }
     return (
         <div>
             <div className="drawer lg:drawer-open">
@@ -33,30 +40,44 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <ul className="bg-base-200 rounded-md h-[80%] p-5 pl-10">
-                            <li className="">
-                                <span className="text-red-600">Manage Account</span>
-                            </li>
-                            <li><Link to=''>Profile Information</Link></li>
-                            <li><Link to='/dashboard/address'>Manage Address</Link></li>
-                            <li><Link to=''>Change Password</Link></li>
-                            <li className="mt-5">
-                                <span className="text-red-600">My Order History</span>
-                            </li>
-                            <li><Link to='/dashboard/returnList'>My Returns</Link></li>
-                            <li><Link to='/dashboard/orderList'>My Orders</Link></li>
-                            <li><Link to='/dashboard/previousOrderList'>My Previous Orders</Link></li>
-                            <li><Link to='/dashboard/reviewList'>My Review</Link></li>
-                            <li className="mt-5">
+                            {
+                                isAdmin ? (
+                                    <>
+                                        <li><Link to='/'><FaHome />Home</Link></li>
+                                        <li><Link to='/dashboard/manageUsers'>Manage Users</Link></li>
 
-                                <span className="text-red-600">Payment Method</span>
-                            </li>
-                            <li><Link to=''>Voucher</Link></li>
-                            <li className="mt-5">
+                                    </>
+                                ) : (isSeller ? (
+                                    <>
+                                        <li><Link to='/'><FaHome />Home</Link></li>
+                                    </>
+                                ) : (
+                                    <>
+                                        <li className="">
+                                            <span className="text-red-600">Manage Account</span>
+                                        </li>
+                                        <li><Link to=''>Profile Information</Link></li>
+                                        <li><Link to='/dashboard/address'>Manage Address</Link></li>
+                                        <li><Link to=''>Change Password</Link></li>
+                                        <li className="mt-5">
+                                            <span className="text-red-600">My Order History</span>
+                                        </li>
+                                        <li><Link to='/dashboard/returnList'>My Returns</Link></li>
+                                        <li><Link to='/dashboard/orderList'>My Orders</Link></li>
+                                        <li><Link to='/dashboard/previousOrderList'>My Previous Orders</Link></li>
+                                        <li><Link to='/dashboard/reviewList'>My Review</Link></li>
+                                        <li className="mt-5">
 
-                                <Link className="text-red-600">My WishList</Link>
-                            </li>
-                            <li><Link to='/'>Home</Link></li>
+                                            <span className="text-red-600">Payment Method</span>
+                                        </li>
+                                        <li><Link to=''>Voucher</Link></li>
+                                        <li className="mt-5">
 
+                                            <Link className="text-red-600">My WishList</Link>
+                                        </li>
+                                        <li><Link to='/'>Home</Link></li>
+                                    </>
+                                ))}
 
                         </ul>
 
