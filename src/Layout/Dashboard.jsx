@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProvider';
-import { GrUserManager } from 'react-icons/gr';
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
@@ -10,7 +9,7 @@ const Dashboard = () => {
         <div>
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col">
+                <div className="drawer-content flex flex-col ">
                     {/* Page content here */}
                     <Outlet></Outlet>
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
@@ -18,8 +17,8 @@ const Dashboard = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                    <div className='menu p-4 w-80 h-full text-base-content'>
-                        <div className="bg-base-200 mb-5 rounded-md">
+                    <div className=' menu p-4 w-80 text-base-content'>
+                        <div className="bg-base-200 mb-5 rounded-md h-[15%]">
                             <div className='flex items-center gap-4 '>
                                 <img className=' ps-5  w-25 h-[40px]' src={user?.photoURL} alt="" />
                                 <div className='pt-5 pb-5 pl-5'>
@@ -28,7 +27,7 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
-                        <ul className="bg-base-200 rounded-md p-5 pl-10">
+                        <ul className="bg-base-200 rounded-md p-5 pl-10 h-[80%]">
                             <li className="">
                                 <span className="text-red-600">Manage Account</span>
                             </li>
@@ -42,8 +41,9 @@ const Dashboard = () => {
                             <li><Link to='/dashboard/orderList'>My Orders</Link></li>
                             <li><Link to='/dashboard/previousOrderList'>My Previous Orders</Link></li>
                             <li><Link to='/dashboard/reviewList'>My Review</Link></li>
+                            <li><Link to='/dashboard/addProduct'>Add Product</Link></li>
+                            <li><Link to='/dashboard/addShop'>Create Shop</Link></li>
                             <li className="mt-5">
-
                                 <span className="text-red-600">Payment Method</span>
                             </li>
                             <li><Link to=''>Voucher</Link></li>
