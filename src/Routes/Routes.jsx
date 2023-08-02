@@ -17,6 +17,7 @@ import CustomerReturn from "../Pages/Dashboard/CustomerDashboard/CustomerReturn/
 import CustomerOrder from "../Pages/Dashboard/CustomerDashboard/CustomerOrder/CustomerOrder";
 import CustomerPreviousOrder from "../Pages/Dashboard/CustomerDashboard/CustomerPreviousOrder/CustomerPreviousOrder";
 import CustomerReviewList from "../Pages/Dashboard/CustomerDashboard/CustomerReviewList/CustomerReviewList";
+import ManageAllUsers from "../Pages/Dashboard/ManageAllUsers/ManageAllUsers";
 
 export const router = createBrowserRouter([
   {
@@ -94,6 +95,10 @@ export const router = createBrowserRouter([
           {
             path: 'reviewList',
             element: <CustomerReviewList />
+          },
+          {
+            path: 'manageUsers',
+            element: <ManageAllUsers />
           }
         ]
       }
