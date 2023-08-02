@@ -6,10 +6,8 @@ import Main from "../Layout/Main";
 import LogIn from "../Pages/LogIn/LogIn";
 import Registration from "../Pages/Registration/Registration";
 import ShoppingCart from "../Pages/Home/ShoppingCart/ShoppingCart";
-import Dashboard from "../Layout/Dashboard";
 import Address from "../Pages/Dashboard/Address/Address";
 import ProductContainer from "../Pages/Product/ProductContainer";
-import ProductDetails from "../Pages/Product/ProductDetails/ProductDetails";
 import ShopContainer from "../Pages/Shop/ShopContainer";
 import ShopProductContainer from "../Pages/Shop/ShopProductContainer";
 import TemplateDetails from "../Shared/Template/TemplateDetails/TemplateDetails";
@@ -17,7 +15,14 @@ import CustomerReturn from "../Pages/Dashboard/CustomerDashboard/CustomerReturn/
 import CustomerOrder from "../Pages/Dashboard/CustomerDashboard/CustomerOrder/CustomerOrder";
 import CustomerPreviousOrder from "../Pages/Dashboard/CustomerDashboard/CustomerPreviousOrder/CustomerPreviousOrder";
 import CustomerReviewList from "../Pages/Dashboard/CustomerDashboard/CustomerReviewList/CustomerReviewList";
+import DashboardContainer from "../Layout/DashboardContainer";
+import CustomerAddReview from "../Pages/Dashboard/CustomerDashboard/CustomerAddReview/CustomerAddReview"
+import CustomerAddReturn from "../Pages/Dashboard/CustomerDashboard/CustomerAddReturn/CustomerAddReturn";
+import AddShop from "../Pages/Dashboard/CustomerDashboard/AddShop/AddShop";
+import Addproduct from "../Pages/Dashboard/SellerDashboard/AddProduct/Addproduct";
+
 import ManageAllUsers from "../Pages/Dashboard/ManageAllUsers/ManageAllUsers";
+
 
 export const router = createBrowserRouter([
   {
@@ -74,7 +79,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'dashboard',
-        element: <Dashboard />,
+        element: <DashboardContainer />,
         children: [
           {
             path: 'address',
@@ -97,6 +102,18 @@ export const router = createBrowserRouter([
             element: <CustomerReviewList />
           },
           {
+            path : 'addReview/:_id',
+            element : <CustomerAddReview />
+          },{
+            path : 'addReturn/:_id',
+            element : <CustomerAddReturn />
+          },{
+            path : 'addShop',
+            element : <AddShop/>
+          },{
+            path : 'addProduct',
+            element : <Addproduct />
+          },{
             path: 'manageUsers',
             element: <ManageAllUsers />
           }

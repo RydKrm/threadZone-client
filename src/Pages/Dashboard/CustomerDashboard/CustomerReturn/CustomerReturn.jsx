@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {useEffect, useState} from 'react';
-import productData from '../../../../../public/data/productData.json';
+import { OrderContext } from '../../../../Contexts/OrderContext';
 
 const CustomerReturn = () => {
-   
+   const {allOrder} = useContext(OrderContext);
+
+  
+
   const [products,setProducts] = useState([]);
-  const productSlice = productData.slice(0,10);
   useEffect(()=>{
-    setProducts(productSlice);
+
+     const newArray = allOrder.filter((item)=>item.status==='return')
+    setProducts(newArray);
+    console.log("Dashboard check ",newArray)
   },[])
 
-  console.log("review data ",products)
     return (
-  <div className="overflow-x-auto">
+  <div className="overflow-x-auto mt-10">
   <table className="table">
     {/* head */}
     <thead>
       <tr>
         <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
         </th>
         <th>Product Name</th>
         <th>Shop Name</th>
@@ -48,7 +49,7 @@ const CustomerReturn = () => {
             </div>
             <div>
               <div className="font-bold">{product.productName}</div>
-              <div className="text-sm opacity-50">{product.category}</div>
+              <div className="text-sm opacity-50">{product.userName}</div>
             </div>
           </div>
         </td>
@@ -56,10 +57,11 @@ const CustomerReturn = () => {
           
           <span className="badge badge-ghost badge-sm">{product.shopName}</span>
         </td>
-        <td>$ {product.price}</td>
-        <td>{product.updateDate}</td>
+        <td>$ {product.quantity*product.userId}</td>
+        <td>{product.date}</td>
         <th>
-          <button className={`btn btn-ghost hover:text-black text-white btn-xs ${product.id%3==0 ? 'bg-green-500' : 'bg-yellow-500'}`}>{product.id%3===0 ? 'Returned' : 'Waiting' }</button>
+          <button className={`btn btn-ghost hover:text-black text-white btn-xs  bg-red-500`}>
+             Returned </button>
         </th>
       </tr>
         )
