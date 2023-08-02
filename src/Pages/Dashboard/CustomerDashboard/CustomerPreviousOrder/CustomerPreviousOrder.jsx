@@ -1,30 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {useEffect, useState} from 'react';
-import productData from '../../../../../public/data/productData.json';
+import { OrderContext } from '../../../../Contexts/OrderContext';
+import { Link } from 'react-router-dom';
 
 const CustomerPreviousOrder = () => {
-   const [products,setProducts] = useState([]);
-  const productSlice = productData.slice(0,10);
+   const {allOrder} = useContext(OrderContext);
+
+  
+
+  const [products,setProducts] = useState([]);
   useEffect(()=>{
-    setProducts(productSlice);
+
+     const newArray = allOrder.filter((item)=>item.status==='delivery')
+    setProducts(newArray);
+    console.log("Dashboard check ",newArray)
   },[])
 
-  console.log("review data ",products)
     return (
-  <div className="overflow-x-auto">
+  <div className="overflow-x-auto mt-10">
   <table className="table">
     {/* head */}
     <thead>
       <tr>
         <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
         </th>
         <th>Product Name</th>
         <th>Shop Name</th>
         <th>Price</th>
         <th>Delivery Date</th>
+        <th>Returned</th>
         <th>Status</th>
       </tr>
     </thead>
@@ -47,7 +51,7 @@ const CustomerPreviousOrder = () => {
             </div>
             <div>
               <div className="font-bold">{product.productName}</div>
-              <div className="text-sm opacity-50">{product.category}</div>
+              <div className="text-sm opacity-50">{product.userName}</div>
             </div>
           </div>
         </td>
@@ -55,11 +59,15 @@ const CustomerPreviousOrder = () => {
           
           <span className="badge badge-ghost badge-sm">{product.shopName}</span>
         </td>
-        <td>$ {product.price}</td>
-        <td>{product.updateDate}</td>
-        <th>
-          <button className={`btn btn-ghost hover:text-black text-white btn-xs ${product.id%3===0 ? 'bg-green-500' : 'bg-red-500'}`}>{product.id%3===0 ? 'Approve' : 'Denied' }</button>
-        </th>
+        <td>$ {product.quantity*product.userId}</td>
+        <td>{product.date}</td>
+        {/* <td>{product.isReturn===true ? '' : 'Not Returned'}</td> */}
+        <td className='flex flex-row text-white gap-x-3 font-light mt-3'> <Link to={`/dashboard/addReview/${product._id}`} className='bg-green-400  px-2 rounded'>Review</Link>
+        <Link to={`/dashboard/addReturn/${product._id}`} className='bg-red-400 px-2 rounded'>Returned</Link> </td>
+        <td>
+          <button className={`btn btn-ghost hover:text-black text-white btn-xs  bg-green-500`}>
+             Delivery </button>
+        </td>
       </tr>
         )
       }
@@ -68,6 +76,7 @@ const CustomerPreviousOrder = () => {
   </table>
 </div>
     );
+    
 };
 
 export default CustomerPreviousOrder;

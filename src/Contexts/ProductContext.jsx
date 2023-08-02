@@ -1,5 +1,5 @@
-import productData from '../../public/data/productData.json';
-import React, { createContext, useReducer,useEffect } from 'react';
+import axios from 'axios';
+import React, { createContext, useReducer,useEffect,useState } from 'react';
 
 const ProductContext = createContext();
 
@@ -46,14 +46,24 @@ const productReducer = (state, action) => {
 };
 
 const ProductProvider = ({ children }) => {
-  //const [state,setState] = usesState([]);
-
   const [state, dispatch] = useReducer(productReducer, initialState);
 
   useEffect(() => {
   // const fetchedProducts = productData;
    //console.log("check data ",productData);
-    dispatch({ type: 'SET_PRODUCTS', payload: productData});
+
+   axios.get('http://localhost:5000/getAllProduct')
+  .then((res) => {
+   // console.log('Response Data:', res.data);
+  dispatch({ type: 'SET_PRODUCTS', payload: res.data});
+  })
+  .catch((err) => {
+    console.log('Error:', err);
+  });
+
+  
+
+    
   }, []);
 
   return (
