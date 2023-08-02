@@ -4,11 +4,10 @@ const GallerySection = () => {
     const [galleries, setGallery] = useState([]);
 
     useEffect(() => {
-        fetch('./data/gallery.json')
+        fetch('http://localhost:5000/gallery')
             .then(res => res.json())
-            .then(data => setGallery(data.gallery));
+            .then(data => setGallery(data));
     }, []);
-
     return (
         <div className='max-w-screen-xl mx-auto my-10'>
             <h1 className='text-4xl font-bold text-center my-10'>Gallery Area</h1>
@@ -18,7 +17,7 @@ const GallerySection = () => {
                         key={item.id}
                         src={item.image}
                         alt={`Image ${item.id}`}
-                        className='w-full h-56 object-cover'
+                        className='w-full h-56 object-cover rounded-md'
                     />
                 ))}
             </div>

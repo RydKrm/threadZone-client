@@ -4,9 +4,6 @@ import { OrderContext } from '../../../../Contexts/OrderContext';
 
 const CustomerOrder = () => {
    const {allOrder} = useContext(OrderContext);
-
-  
-
   const [products,setProducts] = useState([]);
   useEffect(()=>{
 
@@ -71,7 +68,6 @@ const CustomerOrder = () => {
   </table>
 </div>
     );
-    
 };
 
 export default CustomerOrder;

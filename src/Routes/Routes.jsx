@@ -21,6 +21,9 @@ import CustomerAddReturn from "../Pages/Dashboard/CustomerDashboard/CustomerAddR
 import AddShop from "../Pages/Dashboard/CustomerDashboard/AddShop/AddShop";
 import Addproduct from "../Pages/Dashboard/SellerDashboard/AddProduct/Addproduct";
 
+import ManageAllUsers from "../Pages/Dashboard/ManageAllUsers/ManageAllUsers";
+
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -110,6 +113,9 @@ export const router = createBrowserRouter([
           },{
             path : 'addProduct',
             element : <Addproduct />
+          },{
+            path: 'manageUsers',
+            element: <ManageAllUsers />
           }
         ]
       }
