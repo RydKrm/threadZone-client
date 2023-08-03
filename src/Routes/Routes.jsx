@@ -22,6 +22,7 @@ import AddShop from "../Pages/Dashboard/CustomerDashboard/AddShop/AddShop";
 import Addproduct from "../Pages/Dashboard/SellerDashboard/AddProduct/Addproduct";
 
 import ManageAllUsers from "../Pages/Dashboard/ManageAllUsers/ManageAllUsers";
+import EditCategory from "../Pages/Dashboard/AdminDashboard/EditCategory/EditCategory";
 
 
 export const router = createBrowserRouter([
@@ -116,6 +117,9 @@ export const router = createBrowserRouter([
           },{
             path: 'manageUsers',
             element: <ManageAllUsers />
+          },{
+            path: 'editCategory',
+            element:<EditCategory/>
           }
         ]
       }
