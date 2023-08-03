@@ -8,4 +8,4 @@ const SellerOrderList = () => {
     );
 };
 
-export default SellerOrderList;
+export default SellerOrderList;   
