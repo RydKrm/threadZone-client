@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { FacebookAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
+import axios from 'axios';
 const googleProvider = new GoogleAuthProvider()
 const facebookProvider=new FacebookAuthProvider()
 
@@ -8,7 +9,8 @@ export const AuthContext = createContext(null)
 const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
-    const [loading, setLoading] = useState(null)
+    const [loading, setLoading] = useState(null);
+    const [userInfo,setUserInfo] = useState({})
 
     const createUser = (email, password) => {
         setLoading(true)
@@ -45,9 +47,20 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
+ useEffect(()=>{
+      axios.post('http://localhost:5000/findUserImformation',{email:user?.email})
+      .then((res)=>{
+      //  console.log("user Id =>  ",res.data);
+        setUserInfo(res.data);
+      })
+      .then((err)=>{
+        console.log(err)
+      })
+    },[user])
 
     const authInfo = {
         user,
+        userInfo,
         loading,
         createUser,
         signInUser,
@@ -57,6 +70,10 @@ const AuthProvider = ({ children }) => {
         facebookSignIn
 
     }
+
+
+     
+
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
