@@ -69,13 +69,26 @@ const Dashboard = () => {
                                         <li><Link to=''>Profile Information</Link></li>
                                         <li><Link to='/dashboard/address'>Manage Address</Link></li>
                                         <li><Link to=''>Change Password</Link></li>
+
                                         <li><Link to='/dashboard/returnList'>My Returns</Link></li>
                                         <li><Link to='/dashboard/orderList'>My Orders</Link></li>
                                         <li><Link to='/dashboard/previousOrderList'>My Previous Orders</Link></li>
                                         <li><Link to='/dashboard/reviewList'>My Review</Link></li>
                                         <li><Link to='/dashboard/addProduct'>Add Product</Link></li>
                                         <li><Link to='/dashboard/addShop'>Create Shop</Link></li>
+
                                         <li><Link to='/dashboard/shopRequest'>Admin Sop Approval</Link></li>
+
+
+                                        <li><Link to='/dashboard/returnList'>My Returns</Link></li>
+                                        <li><Link to='/dashboard/orderList'>My Orders</Link></li>
+                                        <li><Link to='/dashboard/previousOrderList'>My Previous Orders</Link></li>
+                                        <li><Link to='/dashboard/reviewList'>My Review</Link></li>
+                                        <li><Link to='/dashboard/addProduct'>Add Product</Link></li>
+                                        <li><Link to='/dashboard/shopRequest'>Shop Request</Link></li>
+                                        <li><Link to='/dashboard/editCategory'>Admin Edit Category</Link></li>
+
+
                                         <li className="mt-5">
 
                                             <span className="text-red-600">Payment Method</span>
