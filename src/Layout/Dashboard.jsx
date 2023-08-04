@@ -10,7 +10,6 @@ const Dashboard = () => {
 
     const [isAdmin, isAdminLoading] = useAdmin();
     const [isSeller, isSellerLoading] = useSeller();
-    // console.log(user?.photoURL, user?.displayName)
 
     if (isAdminLoading || isSellerLoading) {
         return <div>Loading...</div>;
@@ -55,8 +54,8 @@ const Dashboard = () => {
                                 ) : (isSeller ? (
                                     <>
                                         <li><Link to='/'><FaHome />Home</Link></li>
-                                        <li><Link to='/dashboard'>Complete Order List</Link></li>
-                                        <li><Link to='/dashboard'>Return product List</Link></li>
+                                        <li><Link to='/dashboard/orderList'>Complete Order List</Link></li>
+                                        <li><Link to='/dashboard/'>Return product List</Link></li>
                                         <li><Link to='/dashboard'>Add Product</Link></li>
                                         <li><Link to='/dashboard'>Set Status</Link></li>
                                         <li><Link to='/dashboard'>Change Product Info</Link></li>
@@ -70,6 +69,14 @@ const Dashboard = () => {
                                         <li><Link to=''>Profile Information</Link></li>
                                         <li><Link to='/dashboard/address'>Manage Address</Link></li>
                                         <li><Link to=''>Change Password</Link></li>
+
+                                        <li><Link to='/dashboard/returnList'>My Returns</Link></li>
+                                        <li><Link to='/dashboard/orderList'>My Orders</Link></li>
+                                        <li><Link to='/dashboard/previousOrderList'>My Previous Orders</Link></li>
+                                        <li><Link to='/dashboard/reviewList'>My Review</Link></li>
+                                        <li><Link to='/dashboard/addProduct'>Add Product</Link></li>
+                                        <li><Link to='/dashboard/addShop'>Create Shop</Link></li>
+
                                       <li><Link to='/dashboard/returnList'>My Returns</Link></li>
                             <li><Link to='/dashboard/orderList'>My Orders</Link></li>
                             <li><Link to='/dashboard/previousOrderList'>My Previous Orders</Link></li>
@@ -77,6 +84,7 @@ const Dashboard = () => {
                             <li><Link to='/dashboard/addProduct'>Add Product</Link></li>
                             <li><Link to='/dashboard/addShop'>Create Shop</Link></li>
                             <li><Link to='/dashboard/editCategory'>Admin Edit Category</Link></li>
+
                                         <li className="mt-5">
 
                                             <span className="text-red-600">Payment Method</span>
@@ -100,4 +108,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default Dashboard;+
