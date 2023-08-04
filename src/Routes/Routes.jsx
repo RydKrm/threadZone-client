@@ -22,6 +22,7 @@ import AddShop from "../Pages/Dashboard/CustomerDashboard/AddShop/AddShop";
 import Addproduct from "../Pages/Dashboard/SellerDashboard/AddProduct/Addproduct";
 
 import ManageAllUsers from "../Pages/Dashboard/ManageAllUsers/ManageAllUsers";
+import ShopRequest from "../Pages/Dashboard/AdminDashboard/ShopRequest/ShopRequest";
 
 
 export const router = createBrowserRouter([
@@ -102,21 +103,26 @@ export const router = createBrowserRouter([
             element: <CustomerReviewList />
           },
           {
-            path : 'addReview/:_id',
-            element : <CustomerAddReview />
-          },{
-            path : 'addReturn/:_id',
-            element : <CustomerAddReturn />
-          },{
-            path : 'addShop',
-            element : <AddShop/>
-          },{
-            path : 'addProduct',
-            element : <Addproduct />
-          },{
+            path: 'addReview/:_id',
+            element: <CustomerAddReview />
+          }, {
+            path: 'addReturn/:_id',
+            element: <CustomerAddReturn />
+          }, {
+            path: 'addShop',
+            element: <AddShop />
+          }, {
+            path: 'addProduct',
+            element: <Addproduct />
+          },
+          {
             path: 'manageUsers',
             element: <ManageAllUsers />
-          }
+          },
+          {
+            path: 'shopRequest',
+            element: <ShopRequest />
+          },
         ]
       }
 

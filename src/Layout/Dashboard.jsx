@@ -75,6 +75,7 @@ const Dashboard = () => {
                                         <li><Link to='/dashboard/reviewList'>My Review</Link></li>
                                         <li><Link to='/dashboard/addProduct'>Add Product</Link></li>
                                         <li><Link to='/dashboard/addShop'>Create Shop</Link></li>
+                                        <li><Link to='/dashboard/shopRequest'>Admin Sop Approval</Link></li>
                                         <li className="mt-5">
 
                                             <span className="text-red-600">Payment Method</span>
@@ -98,4 +99,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;+
+export default Dashboard;
