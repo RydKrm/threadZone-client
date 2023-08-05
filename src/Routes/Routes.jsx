@@ -20,9 +20,8 @@ import CustomerAddReview from "../Pages/Dashboard/CustomerDashboard/CustomerAddR
 import CustomerAddReturn from "../Pages/Dashboard/CustomerDashboard/CustomerAddReturn/CustomerAddReturn";
 import AddShop from "../Pages/Dashboard/CustomerDashboard/AddShop/AddShop";
 import Addproduct from "../Pages/Dashboard/SellerDashboard/AddProduct/Addproduct";
-
 import ManageAllUsers from "../Pages/Dashboard/ManageAllUsers/ManageAllUsers";
-import EditCategory from "../Pages/Dashboard/AdminDashboard/EditCategory/EditCategory";
+import ShopRequest from "../Pages/Dashboard/AdminDashboard/ShopRequest/ShopRequest";
 
 
 export const router = createBrowserRouter([
@@ -103,24 +102,26 @@ export const router = createBrowserRouter([
             element: <CustomerReviewList />
           },
           {
-            path : 'addReview/:_id',
-            element : <CustomerAddReview />
-          },{
-            path : 'addReturn/:_id',
-            element : <CustomerAddReturn />
-          },{
-            path : 'addShop',
-            element : <AddShop/>
-          },{
-            path : 'addProduct',
-            element : <Addproduct />
-          },{
+            path: 'addReview/:_id',
+            element: <CustomerAddReview />
+          }, {
+            path: 'addReturn/:_id',
+            element: <CustomerAddReturn />
+          }, {
+            path: 'addShop',
+            element: <AddShop />
+          }, {
+            path: 'addProduct',
+            element: <Addproduct />
+          },
+          {
             path: 'manageUsers',
             element: <ManageAllUsers />
-          },{
-            path: 'editCategory',
-            element:<EditCategory/>
-          }
+          },
+          {
+            path: 'shopRequest',
+            element: <ShopRequest />
+          },
         ]
       }
 
