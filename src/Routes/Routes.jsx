@@ -24,6 +24,7 @@ import ManageAllUsers from "../Pages/Dashboard/ManageAllUsers/ManageAllUsers";
 import ShopRequest from "../Pages/Dashboard/AdminDashboard/ShopRequest/ShopRequest";
 import EditCategory from "../Pages/Dashboard/AdminDashboard/EditCategory/EditCategory";
 import ProductRequest from "../Pages/Dashboard/AdminDashboard/ProductRequest/ProductRequest";
+import Payment from "../Pages/Payment/Payment";
 
 
 export const router = createBrowserRouter([
@@ -78,6 +79,10 @@ export const router = createBrowserRouter([
       {
         path: 'shopSingle/:id',
         element: <ShopProductContainer />
+      },
+      {
+        path : "/paymentPage",
+        element: <Payment/>
       },
       {
         path: 'dashboard',

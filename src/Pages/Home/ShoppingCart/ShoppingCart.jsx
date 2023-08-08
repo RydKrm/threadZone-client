@@ -1,30 +1,27 @@
-// shoppingCart.jsx
-
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { MdDelete } from 'react-icons/md';
 import './ShoppingCart.css';
+import axios from 'axios';
+import { AuthContext } from '../../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ShoppingCart = () => {
-    const products = [
-        {
-            id: 1,
-            name: 'Product 1',
-            price: 10.99,
-            size: 'M',
-            quantity: 2,
-            image: 'https://i.ibb.co/ZG3jpYv/3-c7785c796d0b2bf5aa2b.png',
-        },
-        {
-            id: 2,
-            name: 'Product 2',
-            price: 10.99,
-            size: 'M',
-            quantity: 2,
-            image: 'https://i.ibb.co/ZG3jpYv/3-c7785c796d0b2bf5aa2b.png',
-        },
-    ];
+    const {userInfo} = useContext(AuthContext)
+    const [cartItems, setCartItems] = useState([]);
 
-    const [cartItems, setCartItems] = useState(products);
+    useEffect(()=>{
+        axios.post('http://localhost:5000/getCartList',{id:userInfo._id})
+        .then(res=>{
+              setCartItems(res.data);
+             console.log("Cart data ",res.data)
+        })
+        .then(err=>{
+            console.log(err);
+        })
+
+    },[userInfo])
+    
 
     const calculateTotalPrice = () => {
         return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -32,25 +29,60 @@ const ShoppingCart = () => {
 
     const handleDelete = (itemId) => {
         console.log(itemId);
+        axios.post('http://localhost:5000/deleteCartItem',{id:itemId})
+        .then(res=>{
+            console.log("item id ",res.data);
+            const newData = cartItems.filter(product=>product._id!==itemId);
+            setCartItems(newData);
+        })
+        .then(err=>{
+            console.log(err);
+        })
     };
 
+    const incrementProduct = (_id) => {
+    const newData = cartItems.map((item) =>
+        item._id === _id ? { ...item, quantity: item.quantity + 1 } : item
+    );
+
+    const updatedItem = newData.find((item) => item._id === _id);
+
+    if (updatedItem.quantity > updatedItem.available) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Product not Add',
+            text: `Total ${updatedItem.available} available. You can't add anymore !!`,
+        });
+        return;
+    }
+
+    setCartItems(newData);
+};
+
+const productString = JSON.stringify(cartItems);
+const navigate = useNavigate();
+const handleClick = () => {
+    navigate('/paymentPage', { state: { cartItems } }); 
+  };
+
+
     return (
-        <div className="gap-5 mb-10 all-site max-w-screen-xl mx-auto">
+        <div className="gap-5 mb-10 all-site max-w-screen-xl mx-auto font-poppins">
             <div className='left-side'>
                 <div className='flex mb-5'>
-                    <div className='text-xl flex  font-semibold w-full bg-gray-100 ps-2 pt-2 pb-2'>
+                    <div className='text-xl flex  font-medium font-poppins w-full bg-gray-100 ps-2 pt-2 pb-2'>
                         <h2 className='ml-40'>Product</h2>
 
-                        <h2 className='text-xl ml-36 font-semibold'>Quantity</h2>
-                        <h2 className='text-xl ml-36 font-semibold'>Total</h2>
+                        <h2 className='text-xl ml-36 font-medium'>Quantity</h2>
+                        <h2 className='text-xl ml-36 font-medium'>Total</h2>
                     </div>
                 </div>
 
-                {cartItems.map((item) => (
-                    <div key={item.id} className="flex items-start gap-4 mb-4 bg-gray-100 pt-5 pb-5">
+                {cartItems.map((item,index) => ( 
+                    <div key={index} className="flex items-start gap-4 mb-4 bg-gray-100 pt-5 pb-5">
                         <img src={item.image} alt={item.name} className="w-20 h-20 ms-10" />
                         <div className="flex flex-col ms-10 me-10">
-                            <h3 className="font-semibold text-2xl mb-2">{item.name}</h3>
+                            <h3 className="text-xl mb-2 md:w-36">{item.productName}</h3>
                             <p className='text-red-500 mb-2'>Price: ${item.price}</p>
                             <p>Size: {item.size}</p>
                         </div>
@@ -60,31 +92,27 @@ const ShoppingCart = () => {
                                     onClick={() =>
                                         setCartItems((prevItems) =>
                                             prevItems.map((prevItem) =>
-                                                prevItem.id === item.id ? { ...prevItem, quantity: prevItem.quantity - 1 } : prevItem
+                                                prevItem._id === item._id ? { ...prevItem, quantity: prevItem.quantity!==1 ? prevItem.quantity - 1 : prevItem.quantity } : prevItem
                                             )
                                         )
                                     }
-                                    className="px-2 py-1 text-3xl font-bold bg-gray-100 rounded"
+                                    className="px-2 py-1 text-xl font-bold bg-gray-100 rounded"
                                 >
                                     -
                                 </button>
                                 <span className='text-xl font-bold'>{item.quantity}</span>
                                 <button
-                                    onClick={() =>
-                                        setCartItems((prevItems) =>
-                                            prevItems.map((prevItem) =>
-                                                prevItem.id === item.id ? { ...prevItem, quantity: prevItem.quantity + 1 } : prevItem
-                                            )
-                                        )
+                                    onClick={() =>incrementProduct(item._id)
+                                        
                                     }
-                                    className="px-2 py-1 text-3xl font-bold bg-gray-100 rounded"
+                                    className="px-2 py-1 text-xl font-bold bg-gray-100 rounded"
                                 >
                                     +
                                 </button>
                             </div>
                             <p className='md:ms-20 lg:ms-20 lg:me-20 md:me-20 text-xl font-bold'> ${item.price * item.quantity}</p>
                             <button
-                                onClick={() => handleDelete(item.id)}
+                                onClick={() => handleDelete(item._id)}
                                 className="mt-2 px-2 py-1 ms-20 bg-red-500 text-white rounded"
                             >
                                 <MdDelete></MdDelete>
@@ -115,7 +143,7 @@ const ShoppingCart = () => {
                         <p className=' text-xl font-bold'> ${calculateTotalPrice()}</p>
                     </div>
 
-                    <button className=" w-full mt-4 px-4 py-2 bg-red-800 text-white rounded">
+                    <button onClick={handleClick} className=" w-full mt-4 px-4 py-2 bg-red-800 text-white rounded">
                         Checkout
                     </button>
                 </div>
