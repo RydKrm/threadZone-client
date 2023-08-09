@@ -10,10 +10,11 @@ const ProductGridSingle = (params) => {
    //  console.log("all product Parameters ",params.item);
 
      const { userInfo} = useContext(AuthContext);
-     const {_id,name,email} = userInfo
+     const {_id,name,email} = userInfo;
+    // console.log("checking _id props ",params.item._id)
     const {id,image,category,productName,price,discount,totalReview,rating,totalSell,shopId,shopName,size,quantity} = params.item;
     const productInfo = {
-     productId:id,
+     productId:params.item._id,
        productName,
        image,
        quantity:1,
@@ -22,7 +23,7 @@ const ProductGridSingle = (params) => {
        userName:name,
        shopId,
        shopName,
-       status:'processing',
+       status:'approved',
        addReview:'',
        isReturn:false,
        date: new Date().toISOString(),
