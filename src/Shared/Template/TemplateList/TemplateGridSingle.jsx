@@ -12,7 +12,7 @@ const TemplateGridSingle = (params) => {
      const {_id,name,email} = userInfo
     const {id,image,category,productName,price,discount,totalReview,rating,totalSell,shopId,shopName,quantity,size} = params.item;
     const productInfo = {
-     productId:id,
+     productId:params.item._id,
        productName,
         image,
        quantity:1,
@@ -21,7 +21,7 @@ const TemplateGridSingle = (params) => {
        userName:name,
        shopId,
        shopName,
-       status:'processing',
+       status:'approved',
        addReview:'',
        isReturn:false,
        date: new Date().toISOString(),
