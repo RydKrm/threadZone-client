@@ -1,10 +1,52 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faStar,faHeart,faNotEqual} from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom';
+import { AuthContext } from '../../../Providers/AuthProvider';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const ProductGridSingle = (params) => {
-    const {id,image,productName,price,discount,totalReview,rating,totalSell,} = params.item;
+   //  console.log("all product Parameters ",params.item);
+
+     const { userInfo} = useContext(AuthContext);
+     const {_id,name,email} = userInfo
+    const {id,image,category,productName,price,discount,totalReview,rating,totalSell,shopId,shopName,size,quantity} = params.item;
+    const productInfo = {
+     productId:id,
+       productName,
+       image,
+       quantity:1,
+       available:quantity,
+       userId:_id,
+       userName:name,
+       shopId,
+       shopName,
+       status:'processing',
+       addReview:'',
+       isReturn:false,
+       date: new Date().toISOString(),
+       category,
+       price,
+       size
+    }
+
+    const handleAddProduct=()=>{
+     console.log("product is submitted ");
+     axios.post('http://localhost:5000/orderSubmit',productInfo)
+     .then(res=>{
+          console.log("product is added",res.data);
+          Swal.fire({
+            icon: 'success',
+            title: 'Approve',
+            text: 'Product now add to Product List',
+           })
+     })
+     .then(err=>{
+          console.log(err);
+     })
+    }
+
     return (
       <div className="group rounded bg-white shadow-xl overflow-hidden ">
      <div className="relative ">
@@ -41,9 +83,9 @@ const ProductGridSingle = (params) => {
         </div>
     </div>
 
-    <a href="#" className="block w-full py-1 text-center text-white bg-cDarkBlue border border-cLightBlue rounded-b font-medium hover:bg-transparent hover:text-primary transition " >
+    <button onClick={handleAddProduct} className="block w-full py-1 text-center text-white bg-cDarkBlue border border-cLightBlue rounded-b font-medium hover:bg-transparent hover:text-primary transition " >
          Add To Cart 
-    </a>  
+    </button>  
 </div>
     );
 };

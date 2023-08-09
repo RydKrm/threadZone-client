@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
  useEffect(()=>{
       axios.post('http://localhost:5000/findUserImformation',{email:user?.email})
       .then((res)=>{
-      //  console.log("user Id =>  ",res.data);
+     //   console.log("user Id =>  ",res.data);
         setUserInfo(res.data);
       })
       .then((err)=>{

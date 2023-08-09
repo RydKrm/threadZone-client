@@ -2,9 +2,49 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faStar,faHeart,faNotEqual} from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import {useContext} from 'react';
+import {AuthContext} from '../../../Providers/AuthProvider';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const TemplateSingle = (params) => {
-    const {id,image,productName,price,discount,totalReview,rating,totalSell,category,color,discription,quantity,shopName,size,totalVisit,updateDate} = params.item;
+      const { userInfo} = useContext(AuthContext);
+     const {_id,name,email} = userInfo
+    const {id,image,category,productName,price,discount,totalReview,rating,totalSell,shopId,shopName,discription,color,quantity,size,totalVisit,updateDate} = params.item;
+    const productInfo = {
+     productId:id,
+       productName,
+       image,
+       quantity:1,
+       available:quantity,
+       userId:_id,
+       userName:name,
+       shopId,
+       shopName,
+       status:'processing',
+       addReview:'',
+       isReturn:false,
+       date: new Date().toISOString(),
+       category,
+       price,
+       size
+    }
+
+    const handleAddProduct=()=>{
+     console.log("product is submitted ");
+     axios.post('http://localhost:5000/orderSubmit',productInfo)
+     .then(res=>{
+          console.log("product is added",res.data);
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: 'Product now add to Cart',
+           })
+     })
+     .then(err=>{
+          console.log(err);
+     })
+    }
   //console.log("Id =>",id)
   const wordsArray = discription.split(/\s+/);
   const first20WordsArray = wordsArray.slice(0, 20);
@@ -57,9 +97,9 @@ const TemplateSingle = (params) => {
              </div>
              <div className='font-poppins text-center px-5 py-3'><span className='font-bold'>Description : </span>{description}</div>
         </div>
-        <a href="#" className="block mx-auto w-32 py-1 text-center text-white bg-cDarkBlue border border-cLightBlue rounded-b font-medium hover:bg-transparent hover:text-primary transition " >
+        <button onClick={handleAddProduct} className="block mx-auto w-32 py-1 text-center text-white bg-cDarkBlue border border-cLightBlue rounded-b font-medium hover:bg-transparent hover:text-primary transition " >
          Add To Cart 
-    </a> 
+    </button> 
     </div>
 
      
