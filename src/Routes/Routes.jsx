@@ -138,7 +138,7 @@ export const router = createBrowserRouter([
             element: <ProductRequest />
           },
           {
-            path : 'adminProductDenied',
+            path : 'adminProductBlock',
             element: <AdminDenied />
           },
         ]

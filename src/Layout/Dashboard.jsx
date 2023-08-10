@@ -78,7 +78,7 @@ const Dashboard = () => {
                                         <li><Link to='/dashboard/shopRequest'>Admin Sop Approval</Link></li>
                                         <li><Link to='/dashboard/editCategory'>Admin Edit Category</Link></li>
 
-                                        <li><Link to='/dashboard/adminProductDenied'>Admin Product Denied</Link></li>
+                                        <li><Link to='/dashboard/adminProductBlock'>Admin Product Block</Link></li>
 
 
                                         <li><Link to='/dashboard/productRequest'>Admin Product Approval</Link></li>
