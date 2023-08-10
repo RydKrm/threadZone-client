@@ -1,16 +1,37 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {useEffect, useState} from 'react';
-import { OrderContext } from '../../../../Contexts/OrderContext';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
-const CustomerPreviousOrder = () => {
-   const {allOrder} = useContext(OrderContext);
+const OrderRequest = () => {
   const [products,setProducts] = useState([]);
   useEffect(()=>{
-     const newArray = allOrder.filter((item)=>item.status==='delivered')
-    setProducts(newArray);
-    console.log("Dashboard check ",newArray)
-  },[])
+     axios.post('http://localhost:5000/sellerOrderRequest',{shopId:13})
+     .then(res=>{
+        setProducts(res.data);
+     })
+     .then(err=>
+        console.log(err));
+  },[]);
+
+  const SentToWarehouse = (id)=>{
+     axios.post('http://localhost:5000/sentToWareHouse',{id})
+       .then(res=>{
+        if(res.status){
+         setProducts(preArray=> 
+          preArray.map(obj=>
+            obj._id===id ? {...obj,status:'warehouse'} :obj 
+            )
+        )
+        Swal.fire({
+            icon:'success',
+            title: 'product Sent to warehouse'
+        })
+        }
+       })
+       .then(err=>
+        console.log(err)); 
+  }
 
     return (
   <div className="overflow-x-auto mt-10">
@@ -18,20 +39,20 @@ const CustomerPreviousOrder = () => {
     {/* head */}
     <thead>
       <tr>
-        <th></th>
+        <th>
+        </th>
         <th>Product Name</th>
         <th>Shop Name</th>
         <th>Price</th>
         <th>Delivery Date</th>
-        <th>Returned</th>
         <th>Status</th>
       </tr>
     </thead>
     <tbody>
       {/* row 1 */}
       {
-        products.map((product,index)=>
-          <tr key={index}>
+        products.map((product)=>
+          <tr key={product._id}>
         <th>
           <label>
             <input type="checkbox" className="checkbox" value={product.id}/>
@@ -54,15 +75,13 @@ const CustomerPreviousOrder = () => {
           
           <span className="badge badge-ghost badge-sm">{product.shopName}</span>
         </td>
-        <td>$ {product.quantity*product.userId}</td>
+        <td>$ {parseInt(product.quantity)* parseInt(product.userId)}</td>
         <td>{product.date}</td>
-        {/* <td>{product.isReturn===true ? '' : 'Not Returned'}</td> */}
-        <td className='flex flex-row text-white gap-x-3 font-light mt-3'> <Link to={`/dashboard/addReview/${product._id}`} className='bg-green-400  px-2 rounded'>Review</Link>
-        <Link to={`/dashboard/addReturn/${product._id}`} className='bg-red-400 px-2 rounded'>Returned</Link> </td>
-        <td>
-          <button className={`btn btn-ghost hover:text-black text-white btn-xs  bg-green-500`}>
-             Delivery </button>
-        </td>
+        <th>
+          <button onClick={()=>SentToWarehouse(product._id)} className={`btn btn-ghost  hover:text-black ${product.status==='approved'? 'bg-blue-400' : 'bg-green-500'}  text-white btn-xs` }>
+          {product.status==='approved'? 'Sent to Warehouse' : 'Product Sent'}
+            </button>
+        </th>
       </tr>
         )
       }
@@ -71,7 +90,6 @@ const CustomerPreviousOrder = () => {
   </table>
 </div>
     );
-    
 };
 
-export default CustomerPreviousOrder;
+export default OrderRequest;
