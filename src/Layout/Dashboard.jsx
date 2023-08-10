@@ -77,8 +77,10 @@ const Dashboard = () => {
                                         <li><Link to='/dashboard/addShop'>Create Shop</Link></li>
                                         <li><Link to='/dashboard/shopRequest'>Admin Sop Approval</Link></li>
                                         <li><Link to='/dashboard/editCategory'>Admin Edit Category</Link></li>
-                                
-                                        
+
+                                        <li><Link to='/dashboard/adminProductDenied'>Admin Product Denied</Link></li>
+
+
                                         <li><Link to='/dashboard/productRequest'>Admin Product Approval</Link></li>
                                         <li className="mt-5">
                                             <span className="text-red-600">Payment Method</span>

@@ -25,6 +25,7 @@ import ShopRequest from "../Pages/Dashboard/AdminDashboard/ShopRequest/ShopReque
 import EditCategory from "../Pages/Dashboard/AdminDashboard/EditCategory/EditCategory";
 import ProductRequest from "../Pages/Dashboard/AdminDashboard/ProductRequest/ProductRequest";
 import Payment from "../Pages/Payment/Payment";
+import AdminDenied from "../Pages/Dashboard/AdminDashboard/AdminDenied/AdminDenied";
 
 
 export const router = createBrowserRouter([
@@ -131,10 +132,15 @@ export const router = createBrowserRouter([
           },{
             path: 'editCategory',
             element: <EditCategory />
-          },{
+          },
+          {
             path : 'productRequest',
             element: <ProductRequest />
-          }
+          },
+          {
+            path : 'adminProductDenied',
+            element: <AdminDenied />
+          },
         ]
       }
 
