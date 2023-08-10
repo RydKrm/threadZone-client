@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { AuthContext } from '../../../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const CustomerAddReview = () => {
+
+  const {userInfo} = useContext(AuthContext);
+
     const id = useParams()._id;
    const [productData,setProductData] = useState({});
    const [review,setReview] = useState({});
@@ -14,14 +19,18 @@ const CustomerAddReview = () => {
    .then((res)=>{
       console.log("product data ",res.data);
        setProductData(res.data[0]);
-        const {productName,shopName,shopId} = res.data[0];
+        const {productName,productId,shopName,shopId,image} = res.data[0];
    setReview({
         productName,
-        productId : id,
+        productId,
+        orderId:id,
         shopName,
         shopId,
-        userName:"James Dumas",
-        userId : '0000000',
+        image,
+        userName:userInfo.name,
+        userImage:userInfo.photoURL,
+        userId : userInfo._id,
+        status:'reviewed',
         postDate : new Date().toISOString(),
     })
    })
@@ -50,6 +59,21 @@ const CustomerAddReview = () => {
     const handleReview = (e)=>{
         e.preventDefault();
       console.log("Review Data => ",review);
+      axios.post('http://localhost:5000/addReview',review)
+      .then(res=>{
+        if(res.data.status){
+           Swal.fire({
+            icon: "success",
+            title: "Review Add Successfully",
+            text: "See your review List",
+            timer : 2000
+           })
+        }
+      })
+      .then(err=>
+        console.log(err)
+        
+        )
     }
 
     
