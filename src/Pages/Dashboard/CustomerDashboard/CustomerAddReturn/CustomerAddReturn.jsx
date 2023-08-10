@@ -1,25 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import {useEffect, useState, useContext} from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import {AuthContext} from '../../../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const CustomerAddReturn = () => {
     const id = useParams()._id;
    const [productData,setProductData] = useState({});
    const [review,setReview] = useState({});
+   const {userInfo} = useContext(AuthContext);
 
    useEffect(()=>{
      axios.post('http://localhost:5000/getSingleOrder',{id})
    .then((res)=>{
       console.log("product data ",res.data);
        setProductData(res.data[0]);
-        const {productName,shopName,shopId} = res.data[0];
+        const {productName,productId,shopName,shopId,image} = res.data[0];
    setReview({
         productName,
-        productId : id,
+        productId,
+        orderId:id,
         shopName,
         shopId,
-        userName:"James Dumas",
-        userId : '0000000',
+        image,
+        userName:userInfo.name,
+        userImage:userInfo.photoURL,
+        userId : userInfo._id,
+        status:'returned',
         postDate : new Date().toISOString(),
     })
    })
@@ -32,9 +39,24 @@ const CustomerAddReturn = () => {
      setReview (value=>({...value,[e.target.name]:e.target.value}))
     }
 
-    const handleReview = (e)=>{
+   const handleReview = (e)=>{
         e.preventDefault();
       console.log("Review Data => ",review);
+      axios.post('http://localhost:5000/addReview',review)
+      .then(res=>{
+        if(res.data.status){
+           Swal.fire({
+            icon: "success",
+            title: "Returned Request Sent",
+            text: "Your Product will in four days",
+            timer : 2000
+           })
+        }
+      })
+      .then(err=>
+        console.log(err)
+        
+        )
     }
 
     

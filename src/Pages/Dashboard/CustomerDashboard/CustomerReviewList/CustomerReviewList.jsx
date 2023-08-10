@@ -1,17 +1,27 @@
 import React from 'react';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import productData from '../../../../../public/data/productData.json';
+import axios from 'axios';
+import {AuthContext} from '../../../../Providers/AuthProvider';
 
 const CustomerReviewList = () => {
-   
-      
-  const [products,setProducts] = useState([]);
-  const productSlice = productData.slice(0,10);
-  useEffect(()=>{
-    setProducts(productSlice);
+  const {userInfo} = useContext(AuthContext);
+  const [returnList,setReturnList] = useState([]);
+  
+    useEffect(()=>{
+    const info = {
+      role:'customer',
+      userId:userInfo._id
+    }
+    axios.post("http://localhost:5000/getReviewList",info) 
+    .then(res=>{
+      setReturnList(res.data);
+    })
+    .then(err=>{
+      console.log(err);
+    })
   },[])
 
-  console.log("review data ",products)
     return (
   <div className="overflow-x-auto">
   <table className="table">
@@ -33,7 +43,7 @@ const CustomerReviewList = () => {
     <tbody>
       {/* row 1 */}
       {
-        products.map((product,index)=>
+        returnList.map((product,index)=>
           <tr key={index}>
         <th>
           <label>
@@ -58,7 +68,7 @@ const CustomerReviewList = () => {
           <span className="badge badge-ghost badge-sm">{product.shopName}</span>
         </td>
         <td>$ {product.price}</td>
-        <td>{product.updateDate}</td>
+        <td>{product.postDate}</td>
         <th>
           <button className={`btn btn-ghost bg-cLightBlue px-3 hover:text-black text-white btn-xs }`}> View </button>
         </th>

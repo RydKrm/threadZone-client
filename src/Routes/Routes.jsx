@@ -25,7 +25,18 @@ import ShopRequest from "../Pages/Dashboard/AdminDashboard/ShopRequest/ShopReque
 import EditCategory from "../Pages/Dashboard/AdminDashboard/EditCategory/EditCategory";
 import ProductRequest from "../Pages/Dashboard/AdminDashboard/ProductRequest/ProductRequest";
 import Payment from "../Pages/Payment/Payment";
+import OrderRequest from "../Pages/Dashboard/SellerDashboard/OrderRequest/OrderRequest";
+import DeliveryList from "../Pages/Dashboard/AdminDashboard/AdminDeliveryRequest/AdminDeliveryRequest";
+import AdminDeliveryRequest from "../Pages/Dashboard/AdminDashboard/AdminDeliveryRequest/AdminDeliveryRequest";
+import AdminDeliveryComplete from "../Pages/Dashboard/AdminDashboard/AdminDeliveryComplete/AdminDeliveryComplete";
+import SellerOrderComplete from "../Pages/Dashboard/SellerDashboard/SellerOrderComplete/SellerOrderComplete";
+import SellerReviewList from "../Pages/Dashboard/SellerDashboard/SellerReviewList/SellerReviewList";
+import SellerReturnList from "../Pages/Dashboard/SellerDashboard/SellerReturnList/SellerReturnList";
+import AdminReviewList from "../Pages/Dashboard/AdminDashboard/AdminReviewList/AdminReviewList";
+import AdminReturnList from "../Pages/Dashboard/AdminDashboard/AdminReturnList/AdminReturnList";
+
 import AdminDenied from "../Pages/Dashboard/AdminDashboard/AdminDenied/AdminDenied";
+
 
 
 export const router = createBrowserRouter([
@@ -136,11 +147,39 @@ export const router = createBrowserRouter([
           {
             path : 'productRequest',
             element: <ProductRequest />
+
+          },{
+            path:'orderRequest',
+            element: <OrderRequest/>
+          },{
+            path : 'adminDeliveryRequest',
+            element: <AdminDeliveryRequest/>
+          },{
+            path : 'adminDeliveryComplete',
+            element : <AdminDeliveryComplete />
+          },{
+            path : 'sellerOrderComplete',
+            element: <SellerOrderComplete/>
+          },{
+            path : 'sellerReviewList',
+            element: <SellerReviewList/>
+          },{
+            path:'sellerReturnList',
+            element: <SellerReturnList/>
+          },{
+            path: 'adminReviewList',
+            element: <AdminReviewList/>
+          },{
+            path: 'adminReturnList',
+            element: <AdminReturnList/>
+          }
+
           },
           {
-            path : 'adminProductDenied',
+            path : 'adminProductBlock',
             element: <AdminDenied />
           },
+
         ]
       }
 
