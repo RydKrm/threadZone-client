@@ -35,6 +35,9 @@ import SellerReturnList from "../Pages/Dashboard/SellerDashboard/SellerReturnLis
 import AdminReviewList from "../Pages/Dashboard/AdminDashboard/AdminReviewList/AdminReviewList";
 import AdminReturnList from "../Pages/Dashboard/AdminDashboard/AdminReturnList/AdminReturnList";
 
+import AdminDenied from "../Pages/Dashboard/AdminDashboard/AdminDenied/AdminDenied";
+
+
 
 export const router = createBrowserRouter([
   {
@@ -140,9 +143,11 @@ export const router = createBrowserRouter([
           },{
             path: 'editCategory',
             element: <EditCategory />
-          },{
+          },
+          {
             path : 'productRequest',
             element: <ProductRequest />
+
           },{
             path:'orderRequest',
             element: <OrderRequest/>
@@ -168,6 +173,13 @@ export const router = createBrowserRouter([
             path: 'adminReturnList',
             element: <AdminReturnList/>
           }
+
+          },
+          {
+            path : 'adminProductBlock',
+            element: <AdminDenied />
+          },
+
         ]
       }
 
