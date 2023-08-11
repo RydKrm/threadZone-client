@@ -1,12 +1,25 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 const NavBar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const navigate = useNavigate()
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error));
+        navigate('/')
+    }
     const commonLink = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to=''>Product list</Link></li>
-        <li><Link to=''>Shop list</Link></li>
+        <li><Link to='/product'>Product list</Link></li>
+        <li><Link to='/shopList'>Shop list</Link></li>
         <li><Link to=''>Category</Link></li>
         <li><Link to=''>About Us</Link></li>
         <li><Link to=''>Contract Us</Link></li>
+        <li><Link to='/shopCart'>Shopping Cart</Link></li>
+
+
     </>
     return (
         <div className="navbar max-w-screen-xl bg-base-100">
@@ -28,7 +41,26 @@ const NavBar = () => {
             </div>
 
             <div className="navbar-end">
-                <Link><li>Login</li></Link>
+                {
+                    user ? <>
+                        <div style={{
+                            width: "25px",
+                            height: "25px",
+                            borderRadius: "50%", // This will create a circular shape
+                            overflow: "hidden" // To clip the image within the circular container
+                        }}>
+                            <img
+                                src={user.photoURL}
+                                alt="User"
+                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                            />
+                        </div>
+                        <li><Link to='/dashboard'>Dashboard</Link></li>
+                        <button onClick={handleLogOut} className="btn btn-ghost btn-sm">LogOut</button>
+                    </> : <>
+                        <li><Link to="/login">Login</Link></li>
+                    </>
+                }
             </div>
         </div>
     );
