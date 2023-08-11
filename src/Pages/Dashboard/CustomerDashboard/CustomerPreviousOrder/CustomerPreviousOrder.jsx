@@ -30,8 +30,8 @@ const CustomerPreviousOrder = () => {
     <tbody>
       {/* row 1 */}
       {
-        products.map((product,index)=>
-          <tr key={index}>
+        products.map((product)=>
+          <tr key={product._id} > 
         <th>
           <label>
             <input type="checkbox" className="checkbox" value={product.id}/>

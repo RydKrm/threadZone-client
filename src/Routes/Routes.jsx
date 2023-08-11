@@ -36,6 +36,7 @@ import AdminReviewList from "../Pages/Dashboard/AdminDashboard/AdminReviewList/A
 import AdminReturnList from "../Pages/Dashboard/AdminDashboard/AdminReturnList/AdminReturnList";
 
 import AdminDenied from "../Pages/Dashboard/AdminDashboard/AdminDenied/AdminDenied";
+import ReturnDetails from "../Pages/Dashboard/CommonPage/ReturnDetails";
 
 
 
@@ -172,13 +173,14 @@ export const router = createBrowserRouter([
           },{
             path: 'adminReturnList',
             element: <AdminReturnList/>
-          }
-
           },
           {
             path : 'adminProductBlock',
             element: <AdminDenied />
-          },
+          },{
+            path:'returnDetails/:id',
+            element:<ReturnDetails/>
+          }
 
         ]
       }

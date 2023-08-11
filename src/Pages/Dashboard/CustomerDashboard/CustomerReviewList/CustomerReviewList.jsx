@@ -3,6 +3,7 @@ import {useEffect, useState, useContext} from 'react';
 import productData from '../../../../../public/data/productData.json';
 import axios from 'axios';
 import {AuthContext} from '../../../../Providers/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const CustomerReviewList = () => {
   const {userInfo} = useContext(AuthContext);
@@ -43,8 +44,8 @@ const CustomerReviewList = () => {
     <tbody>
       {/* row 1 */}
       {
-        returnList.map((product,index)=>
-          <tr key={index}>
+        returnList.map((product)=>
+          <tr key={product._id}>
         <th>
           <label>
             <input type="checkbox" className="checkbox" value={product.id}/>
@@ -70,7 +71,7 @@ const CustomerReviewList = () => {
         <td>$ {product.price}</td>
         <td>{product.postDate}</td>
         <th>
-          <button className={`btn btn-ghost bg-cLightBlue px-3 hover:text-black text-white btn-xs }`}> View </button>
+          <Link to={`/dashboard/returnDetails/${product._id}`} className={`btn btn-ghost bg-cLightBlue px-3 hover:text-black text-white btn-xs }`}> View </Link>
         </th>
       </tr>
         )
