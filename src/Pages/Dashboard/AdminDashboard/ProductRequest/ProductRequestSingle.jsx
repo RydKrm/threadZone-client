@@ -6,7 +6,7 @@ const ProductRequestSingle = ({product}) => {
 
     const handleApprove =(status)=>{
         const newProduct= {...product,status};
-        console.log("new Product ",newProduct);
+       // console.log("new Product ",newProduct);
 
         if(status==='approve'){
          Swal.fire({

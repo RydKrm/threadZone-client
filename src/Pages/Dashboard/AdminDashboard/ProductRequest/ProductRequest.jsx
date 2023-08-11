@@ -21,8 +21,8 @@ const ProductRequest = () => {
             <h1 className="text-xl text-center font-poppins">Admin Product Request </h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {
-                    allProduct.map((product,index)=>
-                      <ProductRequestSingle key={index} product={product} />
+                    allProduct.map((product)=>
+                      <ProductRequestSingle key={product._id} product={product} />
                     )
                 }
                 

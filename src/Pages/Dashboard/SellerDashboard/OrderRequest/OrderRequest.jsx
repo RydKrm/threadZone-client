@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../../../Providers/AuthProvider';
 
 const OrderRequest = () => {
   const [products,setProducts] = useState([]);
+  const {userInfo} = useContext(AuthContext);
+
   useEffect(()=>{
-     axios.post('http://localhost:5000/sellerOrderRequest',{shopId:13})
+     axios.post('http://localhost:5000/sellerOrderRequest',{shopId:userInfo.shopId})
      .then(res=>{
         setProducts(res.data);
      })

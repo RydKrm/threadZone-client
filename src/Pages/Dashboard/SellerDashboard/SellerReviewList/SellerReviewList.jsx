@@ -2,6 +2,7 @@ import React from 'react';
 import {useEffect, useState, useContext} from 'react';
 import {AuthContext} from '../../../../Providers/AuthProvider';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const SellerReviewList = () => {
   const {userInfo} = useContext(AuthContext);
@@ -11,7 +12,8 @@ const SellerReviewList = () => {
     const info = {
       role:'seller',
       userId:userInfo._id,
-      shopId:23
+      shopId:userInfo.shopId,
+      shopName:userInfo.shopName
     }
     axios.post("http://localhost:5000/getReviewList",info) 
     .then(res=>{
@@ -71,7 +73,7 @@ const SellerReviewList = () => {
         <td>$ {product.price}</td>
         <td>{product.date}</td>
         <th>
-          <button className={`btn btn-ghost bg-cLightBlue px-3 hover:text-black text-white btn-xs }`}> View </button>
+          <Link to={`/dashboard/returnDetails/${product._id}`} className={`btn btn-ghost bg-cLightBlue px-3 hover:text-black text-white btn-xs }`}> View </Link>
         </th>
       </tr>
         )

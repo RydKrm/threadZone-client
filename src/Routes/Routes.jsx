@@ -34,10 +34,11 @@ import SellerReviewList from "../Pages/Dashboard/SellerDashboard/SellerReviewLis
 import SellerReturnList from "../Pages/Dashboard/SellerDashboard/SellerReturnList/SellerReturnList";
 import AdminReviewList from "../Pages/Dashboard/AdminDashboard/AdminReviewList/AdminReviewList";
 import AdminReturnList from "../Pages/Dashboard/AdminDashboard/AdminReturnList/AdminReturnList";
-
 import AdminDenied from "../Pages/Dashboard/AdminDashboard/AdminDenied/AdminDenied";
+import ReturnDetails from "../Pages/Dashboard/CommonPage/ReturnDetails";
 import SellerProductEdit from "../Pages/Dashboard/SellerDashboard/SellerProductEdit/SellerProductEdit";
 import SellerProductEditFrom from "../Pages/Dashboard/SellerDashboard/SellerProductEditForm/SellerProductEditFrom";
+
 
 
 
@@ -181,11 +182,16 @@ export const router = createBrowserRouter([
           },
           {
             path: 'adminReturnList',
-            element: <AdminReturnList />
+            element: <AdminReturnList/>
+
           },
           {
             path: 'adminProductBlock',
             element: <AdminDenied />
+
+          },{
+            path:'returnDetails/:id',
+            element:<ReturnDetails/>
           },
           {
             path: 'sellerProductEdit',

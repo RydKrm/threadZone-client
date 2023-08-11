@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {useEffect, useState} from 'react';
 import axios from 'axios';
+import { AuthContext } from '../../../../Providers/AuthProvider';
 
 const SellerOrderComplete = () => {
   const [products,setProducts] = useState([]);
+  const {userInfo} = useContext(AuthContext);
   useEffect(()=>{
-     axios.post('http://localhost:5000/sellerOrderComplete',{shopId:13})
+     axios.post('http://localhost:5000/sellerOrderComplete',{shopId:userInfo.shopId})
      .then(res=>{
         setProducts(res.data);
      })
