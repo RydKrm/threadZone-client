@@ -81,11 +81,14 @@ const Dashboard = () => {
                 <li><Link to='/dashboard/sellerReviewList'>Seller Review List </Link></li>
                 <li><Link to='/dashboard/sellerReturnList'>Seller Return List  </Link></li>
 
+
                {/* {Admin} */}
                <li><Link to='/dashboard/shopRequest'>Admin Sop Approval</Link></li>
                 <li><Link to='/dashboard/editCategory'>Admin Edit Category</Link></li>
                 <li><Link to='/dashboard/shopRequest'>Admin Shop Approval</Link></li>
                 <li><Link to='/dashboard/productRequest'>Admin Product Approval</Link></li>
+                  <li><Link to='/dashboard/adminProductBlock'>Admin Product Block</Link></li>
+
                 <li><Link to='/dashboard/adminDeliveryRequest'>Admin Delivery Request</Link></li>
                 <li><Link to='/dashboard/adminDeliveryComplete'>Admin Delivery Complete</Link></li>
                 <li><Link to='/dashboard/adminReviewList'>Admin Review List</Link></li>
