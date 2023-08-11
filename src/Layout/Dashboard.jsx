@@ -80,6 +80,7 @@ const Dashboard = () => {
                 <li><Link to='/dashboard/sellerOrderComplete'>Seller Order Complete</Link></li>
                 <li><Link to='/dashboard/sellerReviewList'>Seller Review List </Link></li>
                 <li><Link to='/dashboard/sellerReturnList'>Seller Return List  </Link></li>
+                <li><Link to='/dashboard/sellerProductEdit'>Seller Product Edit  </Link></li>
 
 
                {/* {Admin} */}

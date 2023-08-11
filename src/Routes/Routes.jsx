@@ -34,9 +34,11 @@ import SellerReviewList from "../Pages/Dashboard/SellerDashboard/SellerReviewLis
 import SellerReturnList from "../Pages/Dashboard/SellerDashboard/SellerReturnList/SellerReturnList";
 import AdminReviewList from "../Pages/Dashboard/AdminDashboard/AdminReviewList/AdminReviewList";
 import AdminReturnList from "../Pages/Dashboard/AdminDashboard/AdminReturnList/AdminReturnList";
-
 import AdminDenied from "../Pages/Dashboard/AdminDashboard/AdminDenied/AdminDenied";
 import ReturnDetails from "../Pages/Dashboard/CommonPage/ReturnDetails";
+import SellerProductEdit from "../Pages/Dashboard/SellerDashboard/SellerProductEdit/SellerProductEdit";
+import SellerProductEditFrom from "../Pages/Dashboard/SellerDashboard/SellerProductEditForm/SellerProductEditFrom";
+
 
 
 
@@ -94,8 +96,8 @@ export const router = createBrowserRouter([
         element: <ShopProductContainer />
       },
       {
-        path : "/paymentPage",
-        element: <Payment/>
+        path: "/paymentPage",
+        element: <Payment />
       },
       {
         path: 'dashboard',
@@ -141,45 +143,63 @@ export const router = createBrowserRouter([
           {
             path: 'shopRequest',
             element: <ShopRequest />
-          },{
+          }, {
             path: 'editCategory',
             element: <EditCategory />
           },
           {
-            path : 'productRequest',
+            path: 'productRequest',
             element: <ProductRequest />
 
-          },{
-            path:'orderRequest',
-            element: <OrderRequest/>
-          },{
-            path : 'adminDeliveryRequest',
-            element: <AdminDeliveryRequest/>
-          },{
-            path : 'adminDeliveryComplete',
-            element : <AdminDeliveryComplete />
-          },{
-            path : 'sellerOrderComplete',
-            element: <SellerOrderComplete/>
-          },{
-            path : 'sellerReviewList',
-            element: <SellerReviewList/>
-          },{
-            path:'sellerReturnList',
-            element: <SellerReturnList/>
-          },{
-            path: 'adminReviewList',
-            element: <AdminReviewList/>
-          },{
-            path: 'adminReturnList',
-            element: <AdminReturnList/>
           },
           {
-            path : 'adminProductBlock',
+            path: 'orderRequest',
+            element: <OrderRequest />
+          },
+          {
+            path: 'adminDeliveryRequest',
+            element: <AdminDeliveryRequest />
+          },
+          {
+            path: 'adminDeliveryComplete',
+            element: <AdminDeliveryComplete />
+          },
+          {
+            path: 'sellerOrderComplete',
+            element: <SellerOrderComplete />
+          },
+          {
+            path: 'sellerReviewList',
+            element: <SellerReviewList />
+          },
+          {
+            path: 'sellerReturnList',
+            element: <SellerReturnList />
+          },
+          {
+            path: 'adminReviewList',
+            element: <AdminReviewList />
+          },
+          {
+            path: 'adminReturnList',
+            element: <AdminReturnList/>
+
+          },
+          {
+            path: 'adminProductBlock',
             element: <AdminDenied />
+
           },{
             path:'returnDetails/:id',
             element:<ReturnDetails/>
+          },
+          {
+            path: 'sellerProductEdit',
+            element: <SellerProductEdit />
+          },
+          {
+            path: 'sellerProductEditForm/:productId',
+            element: <SellerProductEditFrom />
           }
 
         ]
