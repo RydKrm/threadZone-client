@@ -58,9 +58,9 @@ const AdminDenied = () => {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Food</th>
-                            <th>Item Name</th>
-                            <th>Price</th>
+                            <th>Product Picture</th>
+                            <th>Product Name</th>
+                            <th>Shop Name</th>
                             <th>Action</th>
                         </tr>
                     </thead>

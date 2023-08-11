@@ -69,19 +69,31 @@ const Dashboard = () => {
                                         <li><Link to=''>Profile Information</Link></li>
                                         <li><Link to='/dashboard/address'>Manage Address</Link></li>
                                         <li><Link to=''>Change Password</Link></li>
-                                        <li><Link to='/dashboard/returnList'>My Returns</Link></li>
                                         <li><Link to='/dashboard/orderList'>My Orders</Link></li>
                                         <li><Link to='/dashboard/previousOrderList'>My Previous Orders</Link></li>
                                         <li><Link to='/dashboard/reviewList'>My Review</Link></li>
+                                        <li><Link to='/dashboard/returnList'>My Returns</Link></li>
                                         <li><Link to='/dashboard/addProduct'>Add Product</Link></li>
                                         <li><Link to='/dashboard/addShop'>Create Shop</Link></li>
+                                        {/* Seller  */}
+                                        <li><Link to='/dashboard/orderRequest'>Seller Order Request</Link></li>
+                                        <li><Link to='/dashboard/sellerOrderComplete'>Seller Order Complete</Link></li>
+                                        <li><Link to='/dashboard/sellerReviewList'>Seller Review List </Link></li>
+                                        <li><Link to='/dashboard/sellerReturnList'>Seller Return List  </Link></li>
+                                        <li><Link to='/dashboard/sellerProductEdit'>Seller Product Edit  </Link></li>
+
+
+                                        {/* {Admin} */}
                                         <li><Link to='/dashboard/shopRequest'>Admin Sop Approval</Link></li>
                                         <li><Link to='/dashboard/editCategory'>Admin Edit Category</Link></li>
-
+                                        <li><Link to='/dashboard/shopRequest'>Admin Shop Approval</Link></li>
+                                        <li><Link to='/dashboard/productRequest'>Admin Product Approval</Link></li>
                                         <li><Link to='/dashboard/adminProductBlock'>Admin Product Block</Link></li>
 
-
-                                        <li><Link to='/dashboard/productRequest'>Admin Product Approval</Link></li>
+                                        <li><Link to='/dashboard/adminDeliveryRequest'>Admin Delivery Request</Link></li>
+                                        <li><Link to='/dashboard/adminDeliveryComplete'>Admin Delivery Complete</Link></li>
+                                        <li><Link to='/dashboard/adminReviewList'>Admin Review List</Link></li>
+                                        <li><Link to='/dashboard/adminReturnList'>Admin Return List </Link></li>
                                         <li className="mt-5">
                                             <span className="text-red-600">Payment Method</span>
                                         </li>

@@ -1,21 +1,21 @@
-import React, { useContext } from 'react';
-import {useEffect, useState} from 'react';
-import { OrderContext } from '../../../../Contexts/OrderContext';
+import React from 'react';
+import {useEffect, useState, useContext} from 'react';
+import {AuthContext} from '../../../../Providers/AuthProvider';
 import axios from 'axios';
-import { AuthContext } from '../../../../Providers/AuthProvider';
 
-const CustomerReturn = () => {
+const AdminReviewList = () => {
   const {userInfo} = useContext(AuthContext);
   const [returnList,setReturnList] = useState([]);
   
-  useEffect(()=>{
+    useEffect(()=>{
     const info = {
-      role:'customer',
-      userId:userInfo._id
+      role:'admin',
+      userId:userInfo._id,
     }
-    axios.post("http://localhost:5000/getReturnList",info) 
+    axios.post("http://localhost:5000/getReviewList",info) 
     .then(res=>{
       setReturnList(res.data);
+      console.log("all reviewed data ",res.data);
     })
     .then(err=>{
       console.log(err);
@@ -23,12 +23,15 @@ const CustomerReturn = () => {
   },[])
 
     return (
-  <div className="overflow-x-auto mt-10">
+  <div className="overflow-x-auto">
   <table className="table">
     {/* head */}
     <thead>
       <tr>
         <th>
+          <label>
+            <input type="checkbox" className="checkbox" />
+          </label>
         </th>
         <th>Product Name</th>
         <th>Shop Name</th>
@@ -40,8 +43,8 @@ const CustomerReturn = () => {
     <tbody>
       {/* row 1 */}
       {
-        returnList.map((product)=>
-          <tr key={product._id}>
+        returnList.map((product,index)=>
+          <tr key={index}>
         <th>
           <label>
             <input type="checkbox" className="checkbox" value={product.id}/>
@@ -56,7 +59,7 @@ const CustomerReturn = () => {
             </div>
             <div>
               <div className="font-bold">{product.productName}</div>
-              <div className="text-sm opacity-50">{product.userName}</div>
+              <div className="text-sm opacity-50">{product.category}</div>
             </div>
           </div>
         </td>
@@ -64,11 +67,10 @@ const CustomerReturn = () => {
           
           <span className="badge badge-ghost badge-sm">{product.shopName}</span>
         </td>
-        <td>$ { parseInt(product.quantity)*parseInt(product.price)}</td>
+        <td>$ {product.price}</td>
         <td>{product.date}</td>
         <th>
-          <button className={`btn btn-ghost hover:text-black text-white btn-xs  bg-red-500`}>
-             Returned </button>
+          <button className={`btn btn-ghost bg-cLightBlue px-3 hover:text-black text-white btn-xs }`}> View </button>
         </th>
       </tr>
         )
@@ -78,7 +80,6 @@ const CustomerReturn = () => {
   </table>
 </div>
     );
-    
 };
 
-export default CustomerReturn;
+export default AdminReviewList;

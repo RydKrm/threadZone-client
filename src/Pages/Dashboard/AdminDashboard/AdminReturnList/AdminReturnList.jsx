@@ -1,15 +1,25 @@
 import React, { useContext } from 'react';
 import {useEffect, useState} from 'react';
 import { OrderContext } from '../../../../Contexts/OrderContext';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { AuthContext } from '../../../../Providers/AuthProvider';
 
-const CustomerPreviousOrder = () => {
-   const {allOrder} = useContext(OrderContext);
-  const [products,setProducts] = useState([]);
+const AdminReturnList = () => {
+  const {userInfo} = useContext(AuthContext);
+  const [returnList,setReturnList] = useState([]);
+  
   useEffect(()=>{
-     const newArray = allOrder.filter((item)=>item.status==='delivered')
-    setProducts(newArray);
-    console.log("Dashboard check ",newArray)
+    const info = {
+      role:'admin',
+      userId:userInfo._id,
+    }
+    axios.post("http://localhost:5000/getReturnList",info) 
+    .then(res=>{
+      setReturnList(res.data);
+    })
+    .then(err=>{
+      console.log(err);
+    })
   },[])
 
     return (
@@ -18,20 +28,20 @@ const CustomerPreviousOrder = () => {
     {/* head */}
     <thead>
       <tr>
-        <th></th>
+        <th>
+        </th>
         <th>Product Name</th>
         <th>Shop Name</th>
         <th>Price</th>
         <th>Delivery Date</th>
-        <th>Returned</th>
         <th>Status</th>
       </tr>
     </thead>
     <tbody>
       {/* row 1 */}
       {
-        products.map((product,index)=>
-          <tr key={index}>
+        returnList.map((product)=>
+          <tr key={product._id}>
         <th>
           <label>
             <input type="checkbox" className="checkbox" value={product.id}/>
@@ -54,15 +64,12 @@ const CustomerPreviousOrder = () => {
           
           <span className="badge badge-ghost badge-sm">{product.shopName}</span>
         </td>
-        <td>$ {product.quantity*product.userId}</td>
+        <td>$ { parseInt(product.quantity)*parseInt(product.price)}</td>
         <td>{product.date}</td>
-        {/* <td>{product.isReturn===true ? '' : 'Not Returned'}</td> */}
-        <td className='flex flex-row text-white gap-x-3 font-light mt-3'> <Link to={`/dashboard/addReview/${product._id}`} className='bg-green-400  px-2 rounded'>Review</Link>
-        <Link to={`/dashboard/addReturn/${product._id}`} className='bg-red-400 px-2 rounded'>Returned</Link> </td>
-        <td>
-          <button className={`btn btn-ghost hover:text-black text-white btn-xs  bg-green-500`}>
-             Delivery </button>
-        </td>
+        <th>
+          <button className={`btn btn-ghost hover:text-black text-white btn-xs  bg-red-500`}>
+             Returned </button>
+        </th>
       </tr>
         )
       }
@@ -74,4 +81,4 @@ const CustomerPreviousOrder = () => {
     
 };
 
-export default CustomerPreviousOrder;
+export default AdminReturnList;
