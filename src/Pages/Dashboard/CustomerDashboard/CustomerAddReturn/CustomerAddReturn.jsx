@@ -3,12 +3,47 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {AuthContext} from '../../../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
+import {getStorage, getDownloadURL, ref, uploadBytes} from 'firebase/storage';
+import {app} from '../../../../firebase/firebase.config';
+import {v4 as uuidv4} from 'uuid';
 
 const CustomerAddReturn = () => {
     const id = useParams()._id;
    const [productData,setProductData] = useState({});
    const [review,setReview] = useState({});
    const {userInfo} = useContext(AuthContext);
+
+     const [isImage,setIsImage] = useState(false);
+
+    //firebase config 
+  const Storage = getStorage(app);
+
+  //Image Upload 
+     const [selectedImages, setSelectedImages] = useState([]);
+     const handleImageChange = (event) => {
+      setIsImage(true)
+    const files = event.target.files;
+    setSelectedImages([...files]);
+  };
+const uniqueId = uuidv4(); 
+const uploadImages = async () => {
+   let imageUrls = [];
+    
+      
+    for(const image of selectedImages) {
+     const imageName = `${uniqueId}_${image.name}`; 
+  const imageRef = ref(Storage,`threadZone/image/${imageName}`);
+   uploadBytes(imageRef,image)
+  .then((snapshot)=>{
+    getDownloadURL(snapshot.ref)
+     .then((url)=>{
+     // console.log("Image url => ",url);
+      imageUrls.push(url);
+     })
+  })
+    }
+  return imageUrls;
+};
 
    useEffect(()=>{
      axios.post('http://localhost:5000/getSingleOrder',{id})
@@ -39,24 +74,52 @@ const CustomerAddReturn = () => {
      setReview (value=>({...value,[e.target.name]:e.target.value}))
     }
 
-   const handleReview = (e)=>{
+   const handleReview = async(e)=>{
         e.preventDefault();
-      console.log("Review Data => ",review);
-      axios.post('http://localhost:5000/addReview',review)
-      .then(res=>{
-        if(res.data.status){
-           Swal.fire({
-            icon: "success",
-            title: "Returned Request Sent",
-            text: "Your Product will in four days",
-            timer : 2000
-           })
+      let allImage;
+        if(isImage){
+           allImage =  await uploadImages();
+              const Toast = Swal.mixin({
+            toast: true,
+            position: 'center',
+            showConfirmButton: false,
+            timer: 8000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          Toast.fire({
+            icon: 'info',
+            title: 'Waiting for image being uploaded !! '
+          })
+
+
         }
-      })
+        
+          setTimeout(() => {
+            let newArray = review;
+            if(isImage){
+            newArray = {...review,image:allImage};
+            } 
+
+         axios.post('http://localhost:5000/addReview',newArray)
+          .then(res=>{
+            if(res.data.status){
+              Swal.fire({
+                icon: "success",
+                title: "Review Add Successfully",
+                text: "See your review List",
+                timer : 2000
+              })
+            }
+          })
       .then(err=>
         console.log(err)
         
         )
+          }, 4000);
     }
 
     
@@ -71,7 +134,7 @@ const CustomerAddReturn = () => {
                 </div>
                 <div className='flex flex-row my-3'>
                     <h2 className="text-xl font-poppins">Upload Image </h2>
-                    <input type="file" className='mx-5'/>
+                    <input type="file" multiple onChange={handleImageChange} className='mx-5'/>
                 </div>
                 <button className='text-xl w-36 bg-cDarkBlue text-white px-10 py-3 font-poppins  rounded-md my-3' onClick={handleReview}>Sent</button>
             </form>

@@ -38,6 +38,9 @@ import AdminDenied from "../Pages/Dashboard/AdminDashboard/AdminDenied/AdminDeni
 import ReturnDetails from "../Pages/Dashboard/CommonPage/ReturnDetails";
 import SellerProductEdit from "../Pages/Dashboard/SellerDashboard/SellerProductEdit/SellerProductEdit";
 import SellerProductEditFrom from "../Pages/Dashboard/SellerDashboard/SellerProductEditForm/SellerProductEditFrom";
+import CustomerNotification from "../Pages/Dashboard/CustomerDashboard/CustomerNotification/CustomerNotification";
+import SellerNotification from "../Pages/Dashboard/SellerDashboard/SellerNotification/SellerNotification";
+import AdminNotification from "../Pages/Dashboard/AdminDashboard/AdminNotification/AdminNotification";
 
 
 
@@ -200,6 +203,15 @@ export const router = createBrowserRouter([
           {
             path: 'sellerProductEditForm/:productId',
             element: <SellerProductEditFrom />
+          },{
+            path:'customerNotification',
+            element: <CustomerNotification/>
+          },{
+            path: 'sellerNotification',
+            element: <SellerNotification/>
+          },{
+            path:'adminNotification',
+            element:<AdminNotification/>
           }
 
         ]

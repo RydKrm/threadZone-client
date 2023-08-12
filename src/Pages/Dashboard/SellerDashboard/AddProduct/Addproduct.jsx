@@ -2,18 +2,27 @@ import axios, { Axios } from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
+import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
+import { app } from '../../../../firebase/firebase.config';
+import { v4 as uuidv4 } from 'uuid';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
 
 const AddProduct = () => {
 
   const {userInfo} = useContext(AuthContext);
   const [selectedImages, setSelectedImages] = useState([]);
-  const [uploadResults, setUploadResults] = useState([]);
   const [categoryList,setCategoryList] = useState([]);
+  const [description,setDescription] = useState('');
+  
+  //firebase config 
+  const Storage = getStorage(app)
 
   //Shop Error Handle
   let shopName = 'Shop Name Here';
   let shopId = 'Shop Id here ';
-  if(userInfo.shopName && userInfo.shopId){
+  if(userInfo.shopName || userInfo.shopId){
       shopName = userInfo.shopName;
       shopId = userInfo.shopId;
   }
@@ -44,73 +53,77 @@ const AddProduct = () => {
    })
   },[])
 
-   const handleImageChange = (event) => {
-        setSelectedImages([...selectedImages, ...event.target.files]);
-    };
- 
+    const handleImageChange = (event) => {
+    const files = event.target.files;
+    setSelectedImages([...files]);
+  };
+const uniqueId = uuidv4(); 
 const uploadImages = async () => {
-    selectedImages.forEach((image) => {
-          const formData = new FormData();
-        formData.append('image', image);
-    });
-
-    try {
-        const responses = await Promise.all(
-            selectedImages.map((image) =>
-                axios.post('https://api.imgbb.com/1/upload', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    },
-                    params: {
-                        key: 'f84dcb13cd4ab52c276cb77eaaf9bf89' 
-                    } 
-                })
-            )
-        );
-
-        const imageUrls = responses.map((response) => response.data.data.display_url);
-        console.log("images url ",imageUrls)
-        setUploadResults([...uploadResults, ...imageUrls]); 
-    } catch (error) {
-        console.error('Error uploading images:', error);
+   let imageUrls = [];  
+    for(const image of selectedImages) {
+     const imageName = `${uniqueId}_${image.name}`; 
+  const imageRef = ref(Storage,`threadZone/image/${imageName}`);
+   uploadBytes(imageRef,image)
+  .then((snapshot)=>{
+    getDownloadURL(snapshot.ref)
+     .then((url)=>{
+      imageUrls.push(url);
+     })
+  })
     }
+  return imageUrls;
 };
-
-
   const addInfo = (e)=>{
         setProductInfo(value=>({...value,[e.target.name]:e.target.value}));
   }
 
-  const handleProduct = (e)=>{
+  const handleProduct = async(e)=>{
     e.preventDefault();
-     uploadImages();
-
-
-   console.log("Product Information ",uploadResults);
-  // console.log("selected image",selectedImages)
-//   axios.post('http://localhost:5000/addProduct',productInfo)
-//   .then(res=>{
-//     console.log('Add Product ',res.data);
-//     Swal.fire({
-//     position: 'top-end',
-//     icon: 'success',
-//     title: 'A request goes to admin ',
-//     showConfirmButton: false,
-//     timer: 1500
-// })
-//    setProductInfo(initialValue)
-//   })
-  // .then(err=>{
-  //   console.log(err);
-  // })
-
+   const allImage =  await uploadImages();
+              const Toast = Swal.mixin({
+            toast: true,
+            position: 'center',
+            showConfirmButton: false,
+            timer: 8000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          Toast.fire({
+            icon: 'info',
+            title: 'Waiting for image being uploaded !! '
+          })
+          setTimeout(() => {
+            console.log("all Images ",allImage);
+           // setProductInfo(value=>({...value,image:allImage}));
+            const newArray = {...productInfo,image:allImage,description:description};
+            console.log("New Array ",newArray);
+              axios.post('http://localhost:5000/addProduct',newArray)
+                .then(res=>{
+                  console.log('Add Product ',res.data);
+                  Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'A request goes to admin ',
+                  showConfirmButton: false,
+                  timer: 1500
+              })
+                setProductInfo(initialValue)
+                })
+                .then(err=>{
+                  console.log(err);
+                })
+          }, 8000);
+   
   }
  
 
     return (
         <div>
                 <h2 className="text-xl font-poppins text-center">Seller Add Product</h2>
-             <form method="post" className='flex flex-col mb-6'>
+             <form method="post" className='flex flex-col mb-6' >
                <div className="flex flex-col md:flex-row my-3">
                 <input type="text" onBlur={addInfo} placeholder="Product Name" name='productName' className="input input-bordered w-full max-w-xs mx-5 my-3 border  " required />
                 
@@ -138,7 +151,7 @@ const uploadImages = async () => {
 
                 </div>
                 <div className='my-3 mx-5'>
-                  <textarea onBlur={addInfo} name='discription' className="textarea textarea-bordered w-full" rows={10} placeholder="Description"></textarea>
+                  <ReactQuill theme="snow" value={description} onChange={setDescription}  className='h-64 mb-12 '  />
                 </div>
                 
                 <button type="submit" className='btn btn-active btn-neutral mx-5' onClick={handleProduct}>Add Product</button>
