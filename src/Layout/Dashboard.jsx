@@ -97,6 +97,7 @@ const Dashboard = () => {
                 <li><Link to='/dashboard/adminReviewList'>Admin Review List</Link></li>
                 <li><Link to='/dashboard/adminReturnList'>Admin Return List </Link></li>
                 <li><Link to='/dashboard/adminNotification'>Admin Notification</Link></li>
+                <li><Link to='/dashboard/adminVoucher'>Admin Voucher </Link></li>
                 <li className="mt-5">
                     <span className="text-red-600">Payment Method</span>
                 </li>
