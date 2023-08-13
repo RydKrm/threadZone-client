@@ -33,11 +33,10 @@ const AddProduct = () => {
     shopId,
     updateDate : new Date().toISOString(),
     userId:userInfo._id,
-    rating:0,
-    addToCart:0,
-    totalVisit:0,
-    totalSell:0,              
-    totalReview:0,
+    addToCart: Math.floor(Math.random() * (500 - 100 + 1)) + 100,
+    totalVisit:Math.floor(Math.random() * (800 - 300 + 1)) + 300,
+    totalSell:Math.floor(Math.random() * (100 - 50 + 1)) + 50,           
+    totalReview:Math.floor(Math.random() * (20 - 5 + 1)) + 5,
     status:'pending'
   }
   const [productInfo,setProductInfo] = useState(initialValue)

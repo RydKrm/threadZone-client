@@ -41,6 +41,7 @@ import SellerProductEditFrom from "../Pages/Dashboard/SellerDashboard/SellerProd
 import CustomerNotification from "../Pages/Dashboard/CustomerDashboard/CustomerNotification/CustomerNotification";
 import SellerNotification from "../Pages/Dashboard/SellerDashboard/SellerNotification/SellerNotification";
 import AdminNotification from "../Pages/Dashboard/AdminDashboard/AdminNotification/AdminNotification";
+import AdminVoucher from "../Pages/Dashboard/AdminDashboard/AdminVoucher/AdminVoucher";
 
 
 
@@ -212,6 +213,9 @@ export const router = createBrowserRouter([
           },{
             path:'adminNotification',
             element:<AdminNotification/>
+          },{
+            path:'adminVoucher',
+            element: <AdminVoucher/>
           }
 
         ]
