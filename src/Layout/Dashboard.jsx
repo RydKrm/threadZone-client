@@ -66,6 +66,7 @@ const Dashboard = () => {
                 <li className="">
                     <span className="text-red-600">Manage Account</span>
                 </li>
+                <li><Link to='/dashboard/customerMainDashboard'>Customer Dashboard</Link></li>
                 <li><Link to=''>Profile Information</Link></li>
                 <li><Link to='/dashboard/address'>Manage Address</Link></li>
                 <li><Link to=''>Change Password</Link></li>
@@ -77,7 +78,9 @@ const Dashboard = () => {
                 <li><Link to='/dashboard/addShop'>Create Shop</Link></li>
                 <li><Link to='/dashboard/customerNotification'>Customer Notification</Link></li>
                 
+                
                 {/* Seller  */}
+                <li><Link to='/dashboard/sellerMainDashboard'>Seller Dashboard</Link></li>
                 <li><Link to='/dashboard/orderRequest'>Seller Order Request</Link></li>
                 <li><Link to='/dashboard/sellerOrderComplete'>Seller Order Complete</Link></li>
                 <li><Link to='/dashboard/sellerReviewList'>Seller Review List </Link></li>
@@ -87,6 +90,7 @@ const Dashboard = () => {
 
 
                {/* {Admin} */}
+               <li><Link to='/dashboard/adminMainDashboard'>Admin Dashboard</Link></li>
                <li><Link to='/dashboard/shopRequest'>Admin Sop Approval</Link></li>
                 <li><Link to='/dashboard/editCategory'>Admin Edit Category</Link></li>
                 <li><Link to='/dashboard/shopRequest'>Admin Shop Approval</Link></li>

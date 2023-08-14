@@ -26,7 +26,6 @@ import EditCategory from "../Pages/Dashboard/AdminDashboard/EditCategory/EditCat
 import ProductRequest from "../Pages/Dashboard/AdminDashboard/ProductRequest/ProductRequest";
 import Payment from "../Pages/Payment/Payment";
 import OrderRequest from "../Pages/Dashboard/SellerDashboard/OrderRequest/OrderRequest";
-import DeliveryList from "../Pages/Dashboard/AdminDashboard/AdminDeliveryRequest/AdminDeliveryRequest";
 import AdminDeliveryRequest from "../Pages/Dashboard/AdminDashboard/AdminDeliveryRequest/AdminDeliveryRequest";
 import AdminDeliveryComplete from "../Pages/Dashboard/AdminDashboard/AdminDeliveryComplete/AdminDeliveryComplete";
 import SellerOrderComplete from "../Pages/Dashboard/SellerDashboard/SellerOrderComplete/SellerOrderComplete";
@@ -42,6 +41,9 @@ import CustomerNotification from "../Pages/Dashboard/CustomerDashboard/CustomerN
 import SellerNotification from "../Pages/Dashboard/SellerDashboard/SellerNotification/SellerNotification";
 import AdminNotification from "../Pages/Dashboard/AdminDashboard/AdminNotification/AdminNotification";
 import AdminVoucher from "../Pages/Dashboard/AdminDashboard/AdminVoucher/AdminVoucher";
+import AdminMainDashboard from "../Pages/Dashboard/AdminDashboard/AdminMainDashboard/AdminMainDashboard";
+import SellerMainDashboard from "../Pages/Dashboard/SellerDashboard/SellerMainDashboard/SellerMainDashboard";
+import CustomerMainDashboard from "../Pages/Dashboard/CustomerDashboard/CustomerMainDashboard/CustomerMainDashboard";
 
 
 
@@ -54,80 +56,62 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>
-      },
-      {
+      },{
         path: 'login',
         element: <LogIn></LogIn>
-      },
-      {
+      },{
         path: 'registration',
         element: <Registration></Registration>
-      },
-      {
+      },{
         path: '/product',
         element: <ProductContainer />
-      },
-      {
+      },{
         path: 'shopCart',
         element: <ShoppingCart />
-      },
-      {
+      },{
         path: 'shopList',
         element: <ShopContainer />
-      },
-      {
+      },{
         path: 'shopSingle/:id',
         element: <ShopProductContainer />
-      },
-      {
+      },{
         path: '/product',
         element: <ProductContainer />
-      },
-      {
+      },{
         path: 'shopCart',
         element: <ShoppingCart />
-      },
-      {
+      },{
         path: 'product/productDetails/:id',
         element: <TemplateDetails />
-      },
-      {
+      },{
         path: 'shopList',
         element: <ShopContainer />
-      },
-      {
+      },{
         path: 'shopSingle/:id',
         element: <ShopProductContainer />
-      },
-      {
+      },{
         path: "/paymentPage",
         element: <Payment />
-      },
-      {
+      },{
         path: 'dashboard',
         element: <DashboardContainer />,
         children: [
           {
             path: 'address',
             element: <Address></Address>
-          },
-          {
+          },{
             path: 'returnList',
             element: <CustomerReturn />
-          },
-          {
+          },{
             path: 'orderList',
             element: <CustomerOrder />
-          },
-          {
+          },{
             path: 'previousOrderList',
             element: <CustomerPreviousOrder />
-          },
-          {
+          },{
             path: 'reviewList',
             element: <CustomerReviewList />
-          },
-          {
+          },{
             path: 'addReview/:_id',
             element: <CustomerAddReview />
           }, {
@@ -139,69 +123,52 @@ export const router = createBrowserRouter([
           }, {
             path: 'addProduct',
             element: <Addproduct />
-          },
-          {
+          },{
             path: 'manageUsers',
             element: <ManageAllUsers />
-          },
-          {
+          },{
             path: 'shopRequest',
             element: <ShopRequest />
           }, {
             path: 'editCategory',
             element: <EditCategory />
-          },
-          {
+          },{
             path: 'productRequest',
             element: <ProductRequest />
-
-          },
-          {
+          },{
             path: 'orderRequest',
             element: <OrderRequest />
-          },
-          {
+          },{
             path: 'adminDeliveryRequest',
             element: <AdminDeliveryRequest />
-          },
-          {
+          },{
             path: 'adminDeliveryComplete',
             element: <AdminDeliveryComplete />
-          },
-          {
+          },{
             path: 'sellerOrderComplete',
             element: <SellerOrderComplete />
-          },
-          {
+          },{
             path: 'sellerReviewList',
             element: <SellerReviewList />
-          },
-          {
+          },{
             path: 'sellerReturnList',
             element: <SellerReturnList />
-          },
-          {
+          }, {
             path: 'adminReviewList',
             element: <AdminReviewList />
-          },
-          {
+          },{
             path: 'adminReturnList',
             element: <AdminReturnList/>
-
-          },
-          {
+          },{
             path: 'adminProductBlock',
             element: <AdminDenied />
-
           },{
             path:'returnDetails/:id',
             element:<ReturnDetails/>
-          },
-          {
+          },{
             path: 'sellerProductEdit',
             element: <SellerProductEdit />
-          },
-          {
+          },{
             path: 'sellerProductEditForm/:productId',
             element: <SellerProductEditFrom />
           },{
@@ -216,6 +183,15 @@ export const router = createBrowserRouter([
           },{
             path:'adminVoucher',
             element: <AdminVoucher/>
+          },{
+            path:'adminMainDashboard',
+            element: <AdminMainDashboard/>
+          },{
+            path:'sellerMainDashboard',
+            element: <SellerMainDashboard />
+          },{
+            path:'customerMainDashboard',
+            element: <CustomerMainDashboard/>
           }
 
         ]
