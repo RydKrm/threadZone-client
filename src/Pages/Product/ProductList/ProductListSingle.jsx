@@ -11,6 +11,13 @@ const ProductSingle = (params) => {
      const { userInfo} = useContext(AuthContext);
      const {_id,name,email} = userInfo
     const {id,image,category,productName,price,discount,totalReview,rating,totalSell,shopId,shopName,discription,quantity,color,size,totalVisit,} = params.item;
+
+      const currentDate = new Date();
+    const month = currentDate.getMonth() + 1; 
+    const day = currentDate.getDate();
+    const year = currentDate.getFullYear().toString().substr(-2); 
+    const formattedDate = `${day}-${month}-${year}`;
+
     const productInfo = {
      productId:params.item._id,
        productName,
@@ -24,7 +31,7 @@ const ProductSingle = (params) => {
        status:'approved',
        addReview:'',
        isReturn:false,
-       date: new Date().toISOString(),
+       date: formattedDate,
        category,
        price,
        size

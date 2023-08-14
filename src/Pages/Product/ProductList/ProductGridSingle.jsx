@@ -13,6 +13,12 @@ const ProductGridSingle = (params) => {
      const {_id,name,email} = userInfo;
     // console.log("checking _id props ",params.item._id)
     const {id,image,category,productName,price,discount,totalReview,rating,totalSell,shopId,shopName,size,quantity} = params.item;
+    //date format
+      const currentDate = new Date();
+    const month = currentDate.getMonth() + 1; 
+    const day = currentDate.getDate();
+    const year = currentDate.getFullYear().toString().substr(-2); 
+    const formattedDate = `${day}-${month}-${year}`;
     const productInfo = {
      productId:params.item._id,
        productName,
@@ -26,7 +32,7 @@ const ProductGridSingle = (params) => {
        status:'approved',
        addReview:'',
        isReturn:false,
-       date: new Date().toISOString(),
+       date: formattedDate,
        category,
        price,
        size

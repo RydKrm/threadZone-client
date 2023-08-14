@@ -14,7 +14,6 @@ const ShoppingCart = () => {
         axios.post('http://localhost:5000/getCartList',{id:userInfo._id})
         .then(res=>{
               setCartItems(res.data);
-            // console.log("Cart data ",res.data)
         })
         .then(err=>{
             console.log(err);
