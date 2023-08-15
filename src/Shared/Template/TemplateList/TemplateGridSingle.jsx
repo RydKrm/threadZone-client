@@ -46,7 +46,7 @@ const TemplateGridSingle = (params) => {
             text: 'Product now add to Product List',
            })
      })
-     .then(err=>{
+     .catch(err=>{
           console.log(err);
      })
     }

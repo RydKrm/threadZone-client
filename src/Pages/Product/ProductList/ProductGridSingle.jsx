@@ -7,7 +7,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const ProductGridSingle = (params) => {
-   //  console.log("all product Parameters ",params.item);
+    // console.log("all product Parameters ",params.item);
 
      const { userInfo} = useContext(AuthContext);
      const {_id,name,email} = userInfo;
@@ -71,7 +71,7 @@ const ProductGridSingle = (params) => {
      </div>
 
     <div className="pt-4 pb-3 px-4 ">
-         <Link  to={`productDetails/${id}`}>
+         <Link  to={`productDetails/${params.item._id}`}>
               <h4 className="uppercase font-medium text-xl mb-2 h-18 text-gray-800 hover:text-primary transition ">{productName} </h4> 
          </Link>
 
