@@ -53,10 +53,10 @@ const AuthProvider = ({ children }) => {
      //   console.log("user Id =>  ",res.data);
         setUserInfo(res.data);
       })
-      .then((err)=>{
+      .catch((err)=>{
         console.log(err)
       })
-    },[user])
+    },[user]) 
 
     const authInfo = {
         user,  

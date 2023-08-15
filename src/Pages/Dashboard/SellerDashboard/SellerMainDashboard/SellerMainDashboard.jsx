@@ -5,6 +5,7 @@ import axios from 'axios';
 import SellsVsPrice from '../../Charts/SellsVsPrice';
 import { AuthContext } from '../../../../Providers/AuthProvider';
 import VisitVsSells from '../../Charts/VisitVsSells';
+import SellerDashboardTop from './SellerDashboardTop';
     
     const SellerMainDashboard = () => {
     const [dayVsPrice,setDayVsPrice] = useState([]);
@@ -41,10 +42,12 @@ import VisitVsSells from '../../Charts/VisitVsSells';
     return (
         <div>
             <h2 className='text-center text-2xl font-poppins'>Shop Dashboard </h2>
+            <SellerDashboardTop/>
             <div className="grid grid-cols-2 mt-5">
                     <DayVsPrice data={dayVsPrice} />
                     <SellsVsPrice data={sellsVsPrice} />
-                   {visible && <VisitVsSells data={visitVsSold} /> } 
+                   {/* {visible && <VisitVsSells data={visitVsSold} /> }  */}
+                   
             </div>
         </div>
     );
