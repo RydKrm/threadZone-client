@@ -51,7 +51,7 @@ const Dashboard = () => {
                         <li><Link to='/dashboard'>View All Shop</Link></li>
 
                     </>
-                ) : (!isSeller ? (
+                ) : (isSeller ? (
                     <>
                         <li><Link to='/'><FaHome />Home</Link></li>
                         <li><Link to='/dashboard/orderList'>Complete Order List</Link></li>
