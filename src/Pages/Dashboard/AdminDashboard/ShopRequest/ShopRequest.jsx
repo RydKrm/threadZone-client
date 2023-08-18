@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../../../Providers/AuthProvider';
 
 const ShopRequest = () => {
     const [shops, setShops] = useState([]);
     const [error, setError] = useState('');
+    const {userInfo} = useContext(AuthContext);
+    console.log("testing shop ",userInfo );
 
     useEffect(() => {
         fetchShopData();
@@ -36,6 +39,8 @@ const ShopRequest = () => {
                 // Send the approval status to the server without any reason
                 await axios.put(`http://localhost:5000/updateStatus/${id}`, {
                     status: 'approve',
+                    userId:userInfo._id
+
                 });
 
             } else if (status === 'deny') {

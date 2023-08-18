@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import { OrderContext } from '../../../../Contexts/OrderContext';
 import axios from 'axios';
 import { AuthContext } from '../../../../Providers/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const AdminReturnList = () => {
   const {userInfo} = useContext(AuthContext);
@@ -32,7 +33,7 @@ const AdminReturnList = () => {
         </th>
         <th>Product Name</th>
         <th>Shop Name</th>
-        <th>Price</th>
+        {/* <th>Price</th> */}
         <th>Delivery Date</th>
         <th>Status</th>
       </tr>
@@ -64,11 +65,11 @@ const AdminReturnList = () => {
           
           <span className="badge badge-ghost badge-sm">{product.shopName}</span>
         </td>
-        <td>$ { parseInt(product.quantity)*parseInt(product.price)}</td>
-        <td>{product.date}</td>
+        {/* <td>$ { parseInt(product.quantity)*parseInt(product.price)}</td> */}
+        <td>{product.postDate}</td>
         <th>
-          <button className={`btn btn-ghost hover:text-black text-white btn-xs  bg-red-500`}>
-             Returned </button>
+          <Link to={`/dashboard/returnDetails/${product._id}`} className={`btn btn-ghost hover:text-black text-white btn-xs  bg-red-500`}>
+             Returned </Link>
         </th>
       </tr>
         )

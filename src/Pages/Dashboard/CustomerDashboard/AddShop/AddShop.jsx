@@ -2,12 +2,12 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const AddShop = () => {
-    const [shop,setShop] = useState({status:'pending'});
-
-    const {user} = useContext(AuthContext);
-    console.log("User information",user?.email)
+    const {userInfo} = useContext(AuthContext);
+     const [shop,setShop] = useState({status:'pending',userId:userInfo._id});
+  //  console.log("User information",user?.email)
 
     const addShop = (e)=>{
        setShop(value=>({...value,[e.target.name]:e.target.value}));
@@ -18,6 +18,12 @@ const AddShop = () => {
         axios.post('http://localhost:5000/addShop',shop)
         .then(res=>{
             console.log("addProduct",res.data);
+            Swal.fire({
+                icon:"success",
+                title:"Shop Created successfully",
+                text:"request goes to Admin Wait for confirm!!",
+                timer:2000,
+            })
         })
         .catch(err=>{
             console.log(err);

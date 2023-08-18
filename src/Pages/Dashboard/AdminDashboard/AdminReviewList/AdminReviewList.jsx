@@ -2,6 +2,7 @@ import React from 'react';
 import {useEffect, useState, useContext} from 'react';
 import {AuthContext} from '../../../../Providers/AuthProvider';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const AdminReviewList = () => {
   const {userInfo} = useContext(AuthContext);
@@ -35,7 +36,7 @@ const AdminReviewList = () => {
         </th>
         <th>Product Name</th>
         <th>Shop Name</th>
-        <th>Price</th>
+        {/* <th>Price</th> */}
         <th>Delivery Date</th>
         <th>Status</th>
       </tr>
@@ -59,7 +60,7 @@ const AdminReviewList = () => {
             </div>
             <div>
               <div className="font-bold">{product.productName}</div>
-              <div className="text-sm opacity-50">{product.category}</div>
+              <div className="text-sm opacity-50">{product.userName}</div>
             </div>
           </div>
         </td>
@@ -67,10 +68,10 @@ const AdminReviewList = () => {
           
           <span className="badge badge-ghost badge-sm">{product.shopName}</span>
         </td>
-        <td>$ {product.price}</td>
-        <td>{product.date}</td>
+        {/* <td>$ {parseInt(product.price)}</td> */}
+        <td>{product.postDate}</td>
         <th>
-          <button className={`btn btn-ghost bg-cLightBlue px-3 hover:text-black text-white btn-xs }`}> View </button>
+          <Link to={`/dashboard/returnDetails/${product._id}`} className={`btn btn-ghost bg-cLightBlue px-3 hover:text-black text-white btn-xs }`}> View </Link>
         </th>
       </tr>
         )
