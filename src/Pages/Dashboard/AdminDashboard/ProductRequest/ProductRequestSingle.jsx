@@ -3,10 +3,10 @@ import React from 'react';
 import Swal from 'sweetalert2';
 
 const ProductRequestSingle = ({product}) => {
-
+    console.log("new Product ",product);
     const handleApprove =(status)=>{
         const newProduct= {...product,status};
-        console.log("new Product ",newProduct);
+        
 
         if(status==='approve'){
          Swal.fire({
@@ -35,7 +35,7 @@ const ProductRequestSingle = ({product}) => {
 
     return (
         <div className='m-4 cart font-poppins shadow-lg py-4'>
-           <img src={product.image} alt="product image" />
+           <img src={product.image[0]} alt="product image" />
            <h2 className='text-xl'>{product.productName}</h2>
            <h3 className='text-md text-gray-600'>{product.category}</h3>
            <p>Shop : {product.shopName}</p>

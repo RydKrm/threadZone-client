@@ -14,7 +14,6 @@ const ShoppingCart = () => {
         axios.post('http://localhost:5000/getCartList',{id:userInfo._id})
         .then(res=>{
               setCartItems(res.data);
-             console.log("Cart data ",res.data)
         })
         .then(err=>{
             console.log(err);
@@ -59,7 +58,6 @@ const ShoppingCart = () => {
     setCartItems(newData);
 };
 
-const productString = JSON.stringify(cartItems);
 const navigate = useNavigate();
 const handleClick = () => {
     navigate('/paymentPage', { state: { cartItems } }); 

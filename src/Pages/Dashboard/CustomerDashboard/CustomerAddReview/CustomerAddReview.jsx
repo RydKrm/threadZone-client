@@ -5,19 +5,29 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../../../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
+import {getDownloadURL, ref, uploadBytes, getStorage} from 'firebase/storage';
+import {v4 as uuidv4} from 'uuid';
+import {app} from '../../../../firebase/firebase.config';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
 
 const CustomerAddReview = () => {
 
   const {userInfo} = useContext(AuthContext);
+  const [isImage,setIsImage] = useState(false);
+
+    //firebase config 
+  const Storage = getStorage(app)
 
     const id = useParams()._id;
    const [productData,setProductData] = useState({});
    const [review,setReview] = useState({});
+   const [description,setDescription] = useState('');
 
    useEffect(()=>{
      axios.post('http://localhost:5000/getSingleOrder',{id})
    .then((res)=>{
-      console.log("product data ",res.data);
        setProductData(res.data[0]);
         const {productName,productId,shopName,shopId,image} = res.data[0];
    setReview({
@@ -41,10 +51,32 @@ const CustomerAddReview = () => {
 
    const [stars,setStars] = useState([0,0,0,0,0]);
 
-    const addReview =(e)=>{
-     // setReview((review)=>{...review,e.target.name : e.target.value})
-     setReview (value=>({...value,[e.target.name]:e.target.value}))
+   //Image Upload 
+     const [selectedImages, setSelectedImages] = useState([]);
+     const handleImageChange = (event) => {
+      setIsImage(true)
+    const files = event.target.files;
+    setSelectedImages([...files]);
+  };
+const uniqueId = uuidv4(); 
+const uploadImages = async () => {
+   let imageUrls = [];
+    
+      
+    for(const image of selectedImages) {
+     const imageName = `${uniqueId}_${image.name}`; 
+  const imageRef = ref(Storage,`threadZone/image/${imageName}`);
+   uploadBytes(imageRef,image)
+  .then((snapshot)=>{
+    getDownloadURL(snapshot.ref)
+     .then((url)=>{
+      console.log("Image url => ",url);
+      imageUrls.push(url);
+     })
+  })
     }
+  return imageUrls;
+};
     const addStar = (star)=>{
    
      const newStars = Array(5).fill(0);
@@ -56,10 +88,30 @@ const CustomerAddReview = () => {
    
     }
 
-    const handleReview = (e)=>{
+    const handleReview = async(e)=>{
         e.preventDefault();
-      console.log("Review Data => ",review);
-      axios.post('http://localhost:5000/addReview',review)
+        let allImage;
+           allImage =  await uploadImages();
+           
+              const Toast = Swal.mixin({
+            toast: true,
+            position: 'center',
+            showConfirmButton: false,
+            timer: 8000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          Toast.fire({
+            icon: 'info',
+            title: 'Waiting for image being uploaded !! '
+          })
+          setTimeout(() => {
+            console.log("All Images ",allImage);
+           let newArray = {...review,image:allImage,description:description};
+      axios.post('http://localhost:5000/addReview',newArray)
       .then(res=>{
         if(res.data.status){
            Swal.fire({
@@ -72,8 +124,10 @@ const CustomerAddReview = () => {
       })
       .then(err=>
         console.log(err)
-        
         )
+          }, 8000);
+
+      
     }
 
     
@@ -84,7 +138,7 @@ const CustomerAddReview = () => {
             <form  method="post" className='my-5 '>
                 <div className='flex flex-col'>
                   <label htmlFor="Review" className='text-lg font-poppins text-left'></label>
-                <textarea onBlur={addReview} className='p-5 border border-cLightBlue rounded' name="description" id="Review" cols="30" rows="7"></textarea>  
+                <ReactQuill theme="snow" value={description} onChange={setDescription}  className='h-64 mb-12 '  /> 
                 </div>
                 <div className="flex flex-row my-5">
                     <h2 className="text-xl font-poppins me-5">Give Star : </h2>
@@ -98,7 +152,7 @@ const CustomerAddReview = () => {
                 </div>
                 <div className='flex flex-row my-3'>
                     <h2 className="text-xl font-poppins">Upload Image </h2>
-                    <input type="file" className='mx-5'/>
+                    <input type="file" multiple onChange={handleImageChange} className='mx-5'/>
                 </div>
                 <button className='text-xl w-36 bg-cDarkBlue text-white px-10 py-3 font-poppins  rounded-md my-3' onClick={handleReview}>Sent</button>
             </form>
