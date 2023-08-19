@@ -5,7 +5,7 @@ import img3 from '../../../assets/Slider Image/image-3.png';
 import img4 from '../../../assets/Slider Image/image-4.png';
 import img5 from '../../../assets/Slider Image/image-5.png';
 
-export default function TemplateDetailsImage({image}) {
+export default function TemplateDetailsImage({image}) {  
   return(
      <Carousel className=''>
             <div>

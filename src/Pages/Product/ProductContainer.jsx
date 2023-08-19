@@ -6,7 +6,6 @@ const ProductContainer = () => {
     return (
         <ProductProvider>
             <Product />
-            
         </ProductProvider>
     );
 };
