@@ -1,4 +1,5 @@
-import React, { createContext, useReducer} from 'react'; 
+import {createContext, useReducer, useEffect} from 'react'; 
+import axios from 'axios';
 
 const AllContext = createContext();
 
@@ -21,7 +22,6 @@ const Reducer = (state, action) => {
     case 'SORT_BY':
       return { ...state, sortBy: action.payload };
     case 'FILTER_BY_RATING':
-    //  console.log("shop rating ->  ",action.payload)
       return { ...state, rating: action.payload };
     case 'FILTER_BY_PRICE' : 
     return {...state,minPrice:action.payload.min,maxPrice:action.payload.max};
@@ -39,6 +39,16 @@ const Reducer = (state, action) => {
 const AllProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(Reducer, initialState);
+
+    useEffect(() => {
+   axios.get('http://localhost:5000/getAllProduct')
+  .then((res) => {
+  dispatch({ type: 'SET_PRODUCTS', payload: res.data});
+  })
+  .catch((err) => {
+    console.log('Error:', err);
+  });
+  }, []);
 
   return (
     <AllContext.Provider value={{ state, dispatch }}>

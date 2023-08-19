@@ -8,12 +8,12 @@ const TemplateSingle = (params) => {
       <div className="group rounded bg-white shadow-xl overflow-hidden ">
      <div className="relative ">
     <img src={image} className="w-full h-80 shadow-md" /> 
-  
+   
     <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition ">
      <a href="view.html" className="text-white text-lg w-9 h-9 rounded-full bg-cDarkBlue hover:bg-gray-800 transition flex  items-center justify-center " >
           <FontAwesomeIcon icon={faNotEqual} />
 
-     </a>
+     </a>  
      <a href="#" className="text-white text-lg w-9 h-9 rounded-full bg-cDarkBlue hover:bg-gray-800 transition flex items-center justify-center "  >
           <FontAwesomeIcon icon={faHeart} />
      </a> 

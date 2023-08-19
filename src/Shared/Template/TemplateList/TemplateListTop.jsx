@@ -10,7 +10,7 @@ const ProductListTop = ({view,setView}) => {
       console.log("function value",e.target.value)
       dispatch({type:"SORT_BY",payload:e.target.value})     
    } 
-
+    
     return (
          <div className='mb-4 flex items-center'> 
         <select name="sorting" onChange={setProduct} id="sorting"  className='w-44 text-sm text-gray-600 border border-gray-300 p-3 shadow-sm rounded focus:ring-cDrkBlue focus:border-cDarkBlue' >

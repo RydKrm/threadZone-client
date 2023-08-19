@@ -13,4 +13,4 @@ const TemplateList = ({productList}) => {
     );
 };
 
-export default TemplateList;
+export default TemplateList; 

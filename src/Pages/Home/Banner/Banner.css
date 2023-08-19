@@ -1,0 +1,8 @@
+.banner-style{
+    display: 'flex';
+    justify-content: 'center';
+    background: 'linear-gradient(to bottom, #16235e 0%, #020223 100%)';
+    height:100px;
+    width: 300px;
+
+}
