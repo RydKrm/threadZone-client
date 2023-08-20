@@ -1,10 +1,9 @@
 import {createContext, useReducer, useEffect} from 'react'; 
 import axios from 'axios';
 
-const AllContext = createContext();
+const CategoryContext = createContext();
 
 const initialState = {
-  data: [], 
   sortBy: null, 
   rating: null,
   minPrice:null,
@@ -17,8 +16,6 @@ const initialState = {
 
 const Reducer = (state, action) => {
   switch (action.type) {
-    case 'SET_DEFAULT':
-      return {...state,state:initialState};
     case 'SET_DATA':
       return { ...state, data: action.payload };
     case 'SORT_BY':
@@ -32,32 +29,31 @@ const Reducer = (state, action) => {
     case 'FILTER_BY_COLOR' :
        return {...state, color:action.payload}  ;
     case 'FILTER_BY_CATEGORY' :
-      console.log("cat - ",action.payload)
         return {...state,category : action.payload}     
     default:
       return state;
   }
 };
 
-const AllProvider = ({ children }) => {
+const CategoryProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(Reducer, initialState);
 
-  //   useEffect(() => {
-  //  axios.get('http://localhost:5000/getAllProduct')
-  // .then((res) => {
-  // dispatch({ type: 'SET_PRODUCTS', payload: res.data});
-  // })
-  // .catch((err) => {
-  //   console.log('Error:', err);
-  // });
-  // }, []);
+    useEffect(() => {
+   axios.get('http://localhost:5000/getAllProduct')
+  .then((res) => {
+  dispatch({ type: 'SET_PRODUCTS', payload: res.data});
+  })
+  .catch((err) => {
+    console.log('Error:', err);
+  });
+  }, []);
 
   return (
-    <AllContext.Provider value={{ state, dispatch }}>
+    <CategoryContext.Provider value={{ state, dispatch }}>
       {children}
-    </AllContext.Provider>
+    </CategoryContext.Provider>
   );
 };
 
-export { AllProvider, AllContext};
+export { CategoryProvider, CategoryContext};

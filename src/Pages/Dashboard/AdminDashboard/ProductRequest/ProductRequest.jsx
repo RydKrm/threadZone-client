@@ -11,7 +11,7 @@ const ProductRequest = () => {
         .then(res=>{
             setAllProduct(res.data);
         })
-        .then(err=>{
+        .catch(err=>{
             console.log(err);
         })
     },[])

@@ -16,8 +16,8 @@ const initialState = {
 
 const productReducer = (state, action) => {
   switch (action.type) {
-    // case 'SET_PRODUCTS':
-    //   return { ...state, products: action.payload };
+    case 'SET_DEFAULT':
+      return {...state,state:initialState};
     case 'SORT_BY':
       return { ...state, sortBy: action.payload };
     case 'FILTER_BY_RATING':
@@ -58,7 +58,6 @@ const ProductProvider = ({ children }) => {
   useEffect(() => {
    axios.post('http://localhost:5000/getProducts',state)
   .then((res) => {
-    // dispatch({ type: 'SET_TOTAL_PRODUCT', payload: res.data.totalProduct});
     setTotalProduct(res.data.totalProduct);
     setProduct(res.data.productArray);
   })

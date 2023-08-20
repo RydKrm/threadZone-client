@@ -5,16 +5,23 @@ import img3 from '../../../assets/Slider Image/image-3.png';
 import img4 from '../../../assets/Slider Image/image-4.png';
 import img5 from '../../../assets/Slider Image/image-5.png';
 
-export default function TemplateDetailsImage({image}) {  
+export default function TemplateDetailsImage(params) {  
+   const image = params.image;
+    // console.log("image params",image[0]);
   return(
      <Carousel className=''>
-            <div>
-                <img className="single-img  cursor-pointer border border-primary " src={image} />
-            </div>
-            <div>
-                <img className="single-img w-full cursor-pointer border border-primary " src={img2} />
-            </div>
-            <div>
+            
+            {
+                image.map(img=>
+                <div key={img}>
+                <img className="single-img cursor-pointer border border-primary " src={img} />
+                </div>
+                )
+            }
+            {/* <div>
+                <img className="single-img  cursor-pointer border border-primary " src={img2} />
+            </div> */}
+            {/* <div>
                 <img className="single-img w-full cursor-pointer border border-primary " src={img3} />
             </div>
             <div>
@@ -22,7 +29,7 @@ export default function TemplateDetailsImage({image}) {
             </div>
             <div>
                 <img className="single-img w-full cursor-pointer border border-primary " src={img5} />
-            </div>
+            </div> */}
         </Carousel>
 
 
