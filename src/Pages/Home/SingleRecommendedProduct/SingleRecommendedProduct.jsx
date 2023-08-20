@@ -54,9 +54,10 @@ const SingleRecommendedProduct = ({ singleProduct }) => {
     }
 
     return (
-        <div className="group rounded bg-white shadow-xl overflow-hidden ">
-            <div className="relative ">
-                <img src={image} className="w-full h-80 shadow-md" />
+        <div className="group rounded bg-white shadow-xl overflow-hidden relative h-96">
+
+            <div className="">
+                <img src={image} className="w-full h-52 shadow-md" />
             </div>
 
             <div className="pt-4 pb-3 px-4 ">
@@ -79,7 +80,7 @@ const SingleRecommendedProduct = ({ singleProduct }) => {
                 </div>
             </div>
 
-            <button onClick={handleAddProduct} className="block w-full py-1 text-center text-white bg-cDarkBlue border border-cLightBlue rounded-b font-medium hover:bg-transparent hover:text-primary transition " >
+            <button onClick={handleAddProduct} className="block absolute bottom-0 w-full py-1 text-center text-white bg-cDarkBlue border border-cLightBlue rounded-b font-medium hover:bg-transparent hover:text-primary transition " >
                 Add To Cart
             </button>
         </div>
