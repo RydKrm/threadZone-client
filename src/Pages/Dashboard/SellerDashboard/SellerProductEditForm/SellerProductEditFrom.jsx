@@ -58,7 +58,7 @@ const SellerProductEditForm = () => {
 
     return (
         <div>
-            <h2>Edit Product</h2>
+            <h2 className=" font-poppins text-center text-2xl text-fuchsia-400 ">Seller Product Edit Page</h2>
             <form onSubmit={handleFormSubmit} className='flex flex-col mb-6'>
                 <div className="flex flex-col md:flex-row my-3">
                     <input

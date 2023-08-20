@@ -9,8 +9,8 @@ const GallerySection = () => {
             .then(data => setGallery(data));
     }, []);
     return (
-        <div className='max-w-screen-xl mx-auto my-10'>
-            <h1 className='text-4xl font-bold text-center my-10'>Gallery Area</h1>
+        <div className='max-w-screen-xl mx-auto my-5'>
+            <h1 className='text-4xl uppercase my-10'>Gallery Area</h1>
             <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
                 {galleries.map(item => (
                     <img
