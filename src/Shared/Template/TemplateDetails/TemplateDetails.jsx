@@ -3,9 +3,7 @@ import { useParams } from 'react-router-dom';
 import ProductDetailsImage from './TemplateDetailsImage';
 import ProductDetailsInformation from './TemplatetDetailsInformation';
 import TemplateReviews from './TemplateReviews';
-import TemplateAddReview from './TemplateAddReview';
 import axios from 'axios';
-import TemplateDetailsInformation from './TemplatetDetailsInformation';
 import TemplateDescription from './TemplateDescription';
 const TemplateDetails = () => {
     const params = useParams();

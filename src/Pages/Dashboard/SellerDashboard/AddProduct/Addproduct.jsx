@@ -62,7 +62,7 @@ const uploadImages = async () => {
     for(const image of selectedImages) {
      const imageName = `${uniqueId}_${image.name}`; 
   const imageRef = ref(Storage,`threadZone/image/${imageName}`);
-   uploadBytes(imageRef,image)
+  await uploadBytes(imageRef,image)
   .then((snapshot)=>{
     getDownloadURL(snapshot.ref)
      .then((url)=>{
@@ -72,14 +72,14 @@ const uploadImages = async () => {
     }
   return imageUrls;
 };
+
   const addInfo = (e)=>{
         setProductInfo(value=>({...value,[e.target.name]:e.target.value}));
   }
 
   const handleProduct = async(e)=>{
     e.preventDefault();
-   const allImage =  await uploadImages();
-              const Toast = Swal.mixin({
+     const Toast = Swal.mixin({
             toast: true,
             position: 'center',
             showConfirmButton: false,
@@ -94,7 +94,8 @@ const uploadImages = async () => {
             icon: 'info',
             title: 'Waiting for image being uploaded !! '
           })
-          setTimeout(() => {
+   const allImage = await uploadImages();
+       
             console.log("all Images ",allImage);
            // setProductInfo(value=>({...value,image:allImage}));
             const newArray = {...productInfo,image:allImage,description:description};
@@ -114,8 +115,6 @@ const uploadImages = async () => {
                 .then(err=>{
                   console.log(err);
                 })
-          }, 8000);
-   
   }
  
 

@@ -68,7 +68,7 @@ const TemplateSingle = (params) => {
      <a href="#" className="text-white text-lg w-9 h-9 rounded-full bg-cDarkBlue hover:bg-gray-800 transition flex items-center justify-center "  >
           <FontAwesomeIcon icon={faHeart} />
      </a> 
-    </div>  
+    </div>   
      </div>
 
     <div className="pt-8 pb-3 items-center">

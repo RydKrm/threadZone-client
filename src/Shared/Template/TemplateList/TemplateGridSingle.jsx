@@ -20,7 +20,7 @@ const TemplateGridSingle = (params) => {
      productId:params.item._id,
        productName,
         image,
-       quantity:1,
+       quantity:1, 
        available:quantity,
        userId:_id,
        userName:name,
