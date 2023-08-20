@@ -25,7 +25,7 @@ const NewArrival = () => {
         <section className='mt-10'>
             <h1 className='text-4xl uppercase my-5'>New Arrival</h1>
             <div>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-[500px]">
                     {products.map(singleArrivalProduct =>
 
                         <SingleNewArrival
