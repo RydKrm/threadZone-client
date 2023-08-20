@@ -2,14 +2,21 @@ import React, { useContext } from 'react';
 import {useEffect, useState} from 'react';
 import { OrderContext } from '../../../../Contexts/OrderContext';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../../Providers/AuthProvider';
+import axios from 'axios';
 
 const CustomerPreviousOrder = () => {
    const {allOrder} = useContext(OrderContext);
   const [products,setProducts] = useState([]);
+
+  const {userInfo} = useContext(AuthContext);
+
   useEffect(()=>{
-     const newArray = allOrder.filter((item)=>item.status==='delivered')
-    setProducts(newArray);
-    console.log("Dashboard check ",newArray)
+    axios.post('http://localhost:5000/getPreviousOrder',{userId:userInfo._id})
+    .then(res=>{
+      setProducts(res.data);
+    })
+    .catch(err=>console.log(err));
   },[])
 
     return (

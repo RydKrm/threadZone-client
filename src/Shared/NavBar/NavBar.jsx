@@ -1,6 +1,7 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import axios from "axios";
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
     const navigate = useNavigate()
@@ -10,6 +11,17 @@ const NavBar = () => {
             .catch(error => console.log(error));
         navigate('/')
     }
+
+    const [categoryList,setCategoryList] = useState([]);
+
+    useEffect(()=>{
+        axios.get('http://localhost:5000/getAllCategory')
+        .then(res=>{
+            setCategoryList(res.data);
+           // console.log("all categoty ",res.data)
+        })
+        .catch(err=> console.log(err));
+    },[])
     
     return (
         <div>
@@ -24,7 +36,14 @@ const NavBar = () => {
                             <li>
                                 <a>Category</a>
                                 <ul className="p-2">
+                                {  categoryList.map((cat)=> 
+                                <li key={cat._id} className="my-2 w-32 px-2">  <Link className="bg-gray-100" 
+                                 
+                                to={`/category/${cat.category}`}>{cat.category}</Link></li>
+                                )
+                                }
                                 </ul>
+                                
                             </li>
                             <li><Link to='/shopList'>Shop list</Link></li>
                             <li><Link to='/shopCart'>Shopping Cart</Link></li>
@@ -40,7 +59,12 @@ const NavBar = () => {
                             <details>
                                 <summary>Category</summary>
                                 <ul className="p-2 z-50">
-
+                                 {  categoryList.map((cat)=> 
+                                <li key={cat._id} className="my-2 w-32 px-2">  <Link className="bg-gray-100" 
+                                 
+                                to={`/category/${cat.category}`}>{cat.category}</Link></li>
+                                )
+                                }
                                 </ul>
                             </details>
                         </li>

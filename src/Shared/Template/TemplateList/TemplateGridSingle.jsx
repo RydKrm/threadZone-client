@@ -67,7 +67,7 @@ const TemplateGridSingle = (params) => {
      </div>
 
     <div className="pt-4 pb-3 px-4 ">
-         <Link  to={`../product/productDetails/${id}`}>
+         <Link  to={`../product/productDetails/${params.item._id}`}>  
               <h4 className="uppercase font-medium text-xl mb-2 h-18 text-gray-800 hover:text-primary transition ">{productName} </h4> 
          </Link>
 

@@ -3,11 +3,13 @@ import React from 'react';
 import Swal from 'sweetalert2';
 
 const ProductRequestSingle = ({product}) => {
-    console.log("new Product ",product);
+    
     const handleApprove =(status)=>{
         const newProduct= {...product,status};
+        //const withOutId = {...newProduct};
+      //  delete withOutId['_id'];
+       // console.log("new Product ",withOutId);
         
-
         if(status==='approve'){
          Swal.fire({
             icon: 'success',

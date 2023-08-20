@@ -44,9 +44,7 @@ import AdminVoucher from "../Pages/Dashboard/AdminDashboard/AdminVoucher/AdminVo
 import AdminMainDashboard from "../Pages/Dashboard/AdminDashboard/AdminMainDashboard/AdminMainDashboard";
 import SellerMainDashboard from "../Pages/Dashboard/SellerDashboard/SellerMainDashboard/SellerMainDashboard";
 import CustomerMainDashboard from "../Pages/Dashboard/CustomerDashboard/CustomerMainDashboard/CustomerMainDashboard";
-
-
-
+import CategoryContainer from '../Pages/Category/CategoryContainer';
 
 export const router = createBrowserRouter([
   {
@@ -83,6 +81,9 @@ export const router = createBrowserRouter([
       },{
         path: 'product/productDetails/:id',
         element: <TemplateDetails />
+      },{
+        path: 'category/:categoryName',
+        element: <CategoryContainer/>
       },{
         path: 'shopList',
         element: <ShopContainer />

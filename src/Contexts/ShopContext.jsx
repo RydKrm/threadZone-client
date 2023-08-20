@@ -7,7 +7,6 @@ const ShopContext = createContext();
 const initialState = {
     shopList:[],
     sortBy : null,
-    ratting : null,
 }
 
 const shopReducer = (state,action)=>{

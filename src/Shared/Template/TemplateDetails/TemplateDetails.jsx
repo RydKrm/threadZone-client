@@ -12,6 +12,7 @@ const TemplateDetails = () => {
       axios.post('http://localhost:5000/getSingleProduct',{productId:params.id})
       .then(res=>{
         setProduct(res.data[0]);
+        // console.log(" image check ",res.data[0].image)
       })
       .catch(err=>{console.log(err)});
     },[])
@@ -19,11 +20,11 @@ const TemplateDetails = () => {
   
    <>
    <div className="container pt-4 pb-6 grid lg:grid-cols-2 gap-6 ">
-      <ProductDetailsImage image={product.image} />
+    {product.image &&  <ProductDetailsImage image={product.image} />}
       <ProductDetailsInformation productData={product}/>  
    </div> 
 
-    <TemplateDescription details={product.discription } />
+    {/* <TemplateDescription details={product.discription } /> */}
 
    <TemplateReviews productId={params.id}/>
    </>
