@@ -38,7 +38,7 @@ const SingleRecommendedProduct = ({ singleProduct }) => {
 
     const handleAddProduct = () => {
         console.log("product is submitted ");
-        axios.post('http://localhost:5000/orderSubmit', productInfo)
+        axios.post('https://thread-zone-server.vercel.app/orderSubmit', productInfo)
             .then(res => {
                 console.log("product is added", res.data);
                 Swal.fire({

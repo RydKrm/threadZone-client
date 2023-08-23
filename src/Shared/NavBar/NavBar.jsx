@@ -36,12 +36,16 @@ const NavBar = () => {
                             <li>
                                 <a>Category</a>
                                 <ul className="p-2">
+
+                                    
+
                                 {  categoryList.map((cat)=> 
                                 <li key={cat._id} className="my-2 w-32 px-2">  <Link className="bg-gray-100" 
                                  
                                 to={`/category/${cat.category}`}>{cat.category}</Link></li>
                                 )
                                 }
+
                                 </ul>
                                 
                             </li>

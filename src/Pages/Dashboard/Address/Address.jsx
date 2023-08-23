@@ -4,30 +4,30 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Providers/AuthProvider';
 
 const Address = () => {
-   const {userInfo} = useContext(AuthContext)
-    const [address,setAddress] = useState({userId:userInfo._id});
+    const { userInfo } = useContext(AuthContext)
+    const [address, setAddress] = useState({ userId: userInfo._id });
 
-    const addAddress = (e)=>{
-        setAddress(value=>({...value,[e.target.name]:e.target.value}));
+    const addAddress = (e) => {
+        setAddress(value => ({ ...value, [e.target.name]: e.target.value }));
     }
 
-    const handleAddress = (e)=>{
+    const handleAddress = (e) => {
         e.preventDefault();
-        console.log("full address ",address);
+        console.log("full address ", address);
 
-        axios.post('http://localhost:5000/addAddress',address)
-        .then(res=>{
-            if(res.data.status===true){
-              Swal.fire({
-               icon: 'success',
-               title: 'Address is added',
-               text: `Now you can get delivery in this address `,
-        });
-            }
-        })
-        .then(err=>{
-            console.log(err);
-        })
+        axios.post('https://thread-zone-server.vercel.app/addAddress', address)
+            .then(res => {
+                if (res.data.status === true) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Address is added',
+                        text: `Now you can get delivery in this address `,
+                    });
+                }
+            })
+            .then(err => {
+                console.log(err);
+            })
 
     }
 

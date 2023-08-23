@@ -7,7 +7,7 @@ const SellerProductEditForm = () => {
     const { productId } = useParams();
     const [product, setProduct] = useState({});
     const [updatedProduct, setUpdatedProduct] = useState({});
-    const navigate=useNavigate()
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetchProductData();
@@ -15,7 +15,7 @@ const SellerProductEditForm = () => {
 
     const fetchProductData = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/products/${productId}`);
+            const response = await axios.get(`https://thread-zone-server.vercel.app/products/${productId}`);
             setProduct(response.data);
         } catch (error) {
             console.error('Error fetching product data:', error);
@@ -34,7 +34,7 @@ const SellerProductEditForm = () => {
         event.preventDefault();
 
         try {
-            const response = await axios.put(`http://localhost:5000/product/${productId}`, updatedProduct);
+            const response = await axios.put(`https://thread-zone-server.vercel.app/product/${productId}`, updatedProduct);
             Swal.fire({
                 icon: 'success',
                 title: 'Product Updated',
@@ -43,7 +43,7 @@ const SellerProductEditForm = () => {
 
             // Navigate back to the product list page
             navigate('/dashboard/sellerProductEdit')
-           
+
         } catch (error) {
             console.error('API Error:', error);
 
