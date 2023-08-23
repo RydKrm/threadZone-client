@@ -6,29 +6,29 @@ import TemplateReviews from './TemplateReviews';
 import axios from 'axios';
 import TemplateDescription from './TemplateDescription';
 const TemplateDetails = () => {
-    const params = useParams();
-    const [product,setProduct] = useState({});
-    useEffect(()=>{
-      axios.post('http://localhost:5000/getSingleProduct',{productId:params.id})
-      .then(res=>{
+  const params = useParams();
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    axios.post('https://thread-zone-server.vercel.app/getSingleProduct', { productId: params.id })
+      .then(res => {
         setProduct(res.data[0]);
       })
-      .catch(err=>{console.log(err)});
-    },[])
- return (
-  
-   <>
-   <div className="container pt-4 pb-6 grid lg:grid-cols-2 gap-6 ">
-      <ProductDetailsImage image={product.image} />
-      <ProductDetailsInformation productData={product}/>  
-   </div> 
+      .catch(err => { console.log(err) });
+  }, [])
+  return (
 
-    <TemplateDescription details={product.discription } />
+    <>
+      <div className="container pt-4 pb-6 grid lg:grid-cols-2 gap-6 ">
+        <ProductDetailsImage image={product.image} />
+        <ProductDetailsInformation productData={product} />
+      </div>
 
-   <TemplateReviews productId={params.id}/>
-   </>
-    
- );
+      <TemplateDescription details={product.discription} />
+
+      <TemplateReviews productId={params.id} />
+    </>
+
+  );
 };
 
 export default TemplateDetails;

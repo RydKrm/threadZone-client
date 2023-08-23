@@ -12,7 +12,7 @@ const SellerProductEdit = () => {
 
     const fetchProductsData = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/products');
+            const response = await axios.get('https://thread-zone-server.vercel.app/products');
             setProducts(response.data);
             setError('');
         } catch (error) {

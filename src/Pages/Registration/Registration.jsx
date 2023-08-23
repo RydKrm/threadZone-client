@@ -17,7 +17,7 @@ const Registration = () => {
             })
             .then(() => {
                 const saveUser = { name: data.name, email: data.email, photoURL: data.photoUrl, gender: data.gender, phoneNumber: data.phoneNumber, address: data.address };
-                return fetch('http://localhost:5000/users', {
+                return fetch('https://thread-zone-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

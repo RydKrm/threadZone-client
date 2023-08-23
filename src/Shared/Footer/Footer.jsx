@@ -4,7 +4,7 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
     return (
         <footer className='mb-2'>
-            <div className="footer p-10 bg-base-200 text-base-content ">
+            <div className="footer p-10 bg-gray-300 text-base-content ">
                 <div>
 
                     <p>ThreadZone Emart Ltd.<br />Providing reliable tech since 2023</p>

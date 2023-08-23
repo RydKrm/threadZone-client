@@ -24,6 +24,7 @@ const NavBar = () => {
                             <li>
                                 <a>Category</a>
                                 <ul className="p-2">
+                                    
                                 </ul>
                             </li>
                             <li><Link to='/shopList'>Shop list</Link></li>

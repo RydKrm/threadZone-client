@@ -8,7 +8,7 @@ const useSeller = () => {
     const { data: isSeller, isLoading: isSellerLoading } = useQuery({
         queryKey: ['isSeller', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users/seller/${user?.email}`);
+            const res = await fetch(`https://thread-zone-server.vercel.app/users/seller/${user?.email}`);
             return res.json();
         }
     });

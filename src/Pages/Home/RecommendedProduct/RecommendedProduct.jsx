@@ -7,7 +7,7 @@ const RecommendedProduct = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/recomended')
+        axios.get('https://thread-zone-server.vercel.app/recomended')
             .then(response => {
                 const data = response.data;
 
@@ -20,7 +20,7 @@ const RecommendedProduct = () => {
         <section>
             <h1 className='text-4xl uppercase my-5'>Recommended For You</h1>
             <div>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-[500px]">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 h-[400px]">
                     {products.map(singleProduct =>
                         <SingleRecommendedProduct
                             key={singleProduct._id}

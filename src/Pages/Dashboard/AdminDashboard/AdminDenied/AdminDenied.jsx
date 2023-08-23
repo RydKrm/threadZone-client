@@ -12,7 +12,7 @@ const AdminDenied = () => {
 
     const fetchProductsData = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/products');
+            const response = await axios.get('https://thread-zone-server.vercel.app/products');
             // Set initial isBlocked values based on data from the server
             const updatedProducts = response.data.map(product => ({
                 ...product,
@@ -28,7 +28,7 @@ const AdminDenied = () => {
 
     const handleAdminDenied = async (id) => {
         try {
-            const response = await axios.put(`http://localhost:5000/products/${id}`, { isBlock: true });
+            const response = await axios.put(`https://thread-zone-server.vercel.app/products/${id}`, { isBlock: true });
             if (response.status === 200) {
                 // Update the local products list and set the isBlocked property
                 setProducts(prevProducts =>
