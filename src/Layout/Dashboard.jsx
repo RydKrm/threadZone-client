@@ -38,6 +38,7 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
+
                         <ul className="bg-base-200 rounded-md h-[80%] p-5 pl-10">
                             {
                                 isAdmin ? (
@@ -96,20 +97,12 @@ const Dashboard = () => {
                                         <li><Link to='/dashboard/addShop'>Create Shop</Link></li>
                                         <li><Link to='/dashboard/customerNotification'>Customer Notification</Link></li>
 
-
-                                        {/* Seller  */}
-
-
-                                        {/* {Admin} */}
-
                                     </>
                                 ))}
 
-                        </ul>
-
                     </div>
-
                 </div>
+                
             </div>
         </div>
     );

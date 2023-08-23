@@ -6,6 +6,7 @@ const ProductRequest = () => {
 
     const [allProduct, setAllProduct] = useState([]);
 
+
     useEffect(() => {
         axios.get('https://thread-zone-server.vercel.app/getApproveProduct')
             .then(res => {
@@ -15,6 +16,7 @@ const ProductRequest = () => {
                 console.log(err);
             })
     }, [])
+
 
     return (
         <div>

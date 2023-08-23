@@ -7,7 +7,6 @@ import Swal from 'sweetalert2';  // Import Swal if you're using it
 import { Link } from 'react-router-dom';
 
 const SingleRecommendedProduct = ({ singleProduct }) => {
-    console.log(singleProduct);
     const { userInfo } = useContext(AuthContext);
     const { _id, name, email } = userInfo;
     // console.log("checking _id props ",params.item._id)

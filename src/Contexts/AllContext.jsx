@@ -17,6 +17,8 @@ const initialState = {
 
 const Reducer = (state, action) => {
   switch (action.type) {
+    case 'SET_DEFAULT':
+      return {...state,state:initialState};
     case 'SET_DATA':
       return { ...state, data: action.payload };
     case 'SORT_BY':
@@ -26,11 +28,15 @@ const Reducer = (state, action) => {
     case 'FILTER_BY_PRICE':
       return { ...state, minPrice: action.payload.min, maxPrice: action.payload.max };
     case 'SIZE_BY':
-      return { ...state, size: action.payload };
-    case 'FILTER_BY_COLOR':
-      return { ...state, color: action.payload };
-    case 'FILTER_BY_CATEGORY':
-      return { ...state, category: action.payload }
+
+
+        return {...state,size : action.payload}  ;
+    case 'FILTER_BY_COLOR' :
+       return {...state, color:action.payload}  ;
+    case 'FILTER_BY_CATEGORY' :
+      console.log("cat - ",action.payload)
+        return {...state,category : action.payload}     
+
     default:
       return state;
   }
@@ -39,6 +45,7 @@ const Reducer = (state, action) => {
 const AllProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(Reducer, initialState);
+
 
   useEffect(() => {
     axios.get('https://thread-zone-server.vercel.app/getAllProduct')
@@ -49,6 +56,7 @@ const AllProvider = ({ children }) => {
         console.log('Error:', err);
       });
   }, []);
+
 
   return (
     <AllContext.Provider value={{ state, dispatch }}>

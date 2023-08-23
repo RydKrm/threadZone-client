@@ -7,11 +7,10 @@ const ProductListTop = ({view,setView}) => {
    const {dispatch} = useContext(ProductContext);
 
    const setProduct = (e) =>{
-     // console.log("function value",e.target.value)
      if(e.target.value === 'default'){
-      dispatch({type:"DEFAULT"});
+      dispatch({type:"SET_DEFAULT"});
      }
-      dispatch({type:"SORT_BY",payload:e.target.value})
+      dispatch({type:"SORT_BY",payload:e.target.value});
    } 
 
     return (
@@ -24,12 +23,10 @@ const ProductListTop = ({view,setView}) => {
             <option value="mostReview"> Most Review </option>
         </select> 
 
-
       <div className="flex gap-2 ml-auto">
         <button onClick={()=>{setView('grid')}} className={` ${view==='grid' && 'bg-cDarkBlue text-white cursor-not-allowed'} border border-cDarkBlue w-10 h-9 flex items-center justify-center rounded cursor-pointer text-cDarkLight`}>
            <FontAwesomeIcon icon={faBorderAll} /> 
         </button>
-
         <div onClick={()=>{setView('list')}} className={` ${view==='list' && 'bg-cDarkBlue text-white cursor-not-allowed'}  border border-cDarkBlue w-10 h-9 flex items-center justify-center rounded cursor-pointer flex-gray-600`}>
            <FontAwesomeIcon icon={faList} />
         </div>

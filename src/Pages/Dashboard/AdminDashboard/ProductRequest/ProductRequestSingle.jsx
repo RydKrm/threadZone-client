@@ -2,8 +2,9 @@ import axios from 'axios';
 import React from 'react';
 import Swal from 'sweetalert2';
 
+
 const ProductRequestSingle = ({ product }) => {
-    console.log("new Product ", product);
+    //console.log("new Product ", product);
     const handleApprove = (status) => {
         const newProduct = { ...product, status };
 
@@ -20,6 +21,8 @@ const ProductRequestSingle = ({ product }) => {
                 title: 'Delete',
                 text: 'Product is Deleted',
             })
+
+
         }
 
         axios.post('https://thread-zone-server.vercel.app/adminProductApprove', newProduct)
