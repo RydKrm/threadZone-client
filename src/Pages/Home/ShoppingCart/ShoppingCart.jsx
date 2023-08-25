@@ -7,21 +7,20 @@ import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
 
 const ShoppingCart = () => {
-    const {userInfo} = useContext(AuthContext)
+    const { userInfo } = useContext(AuthContext)
     const [cartItems, setCartItems] = useState([]);
 
-    useEffect(()=>{
-        axios.post('http://localhost:5000/getCartList',{id:userInfo._id})
-        .then(res=>{
-              setCartItems(res.data);
-             console.log("Cart data ",res.data)
-        })
-        .then(err=>{
-            console.log(err);
-        })
+    useEffect(() => {
+        axios.post('https://thread-zone-server.vercel.app/getCartList', { id: userInfo._id })
+            .then(res => {
+                setCartItems(res.data);
+            })
+            .then(err => {
+                console.log(err);
+            })
 
-    },[userInfo])
-    
+    }, [userInfo])
+
 
     const calculateTotalPrice = () => {
         return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -29,41 +28,40 @@ const ShoppingCart = () => {
 
     const handleDelete = (itemId) => {
         console.log(itemId);
-        axios.post('http://localhost:5000/deleteCartItem',{id:itemId})
-        .then(res=>{
-            console.log("item id ",res.data);
-            const newData = cartItems.filter(product=>product._id!==itemId);
-            setCartItems(newData);
-        })
-        .then(err=>{
-            console.log(err);
-        })
+        axios.post('https://thread-zone-server.vercel.app/deleteCartItem', { id: itemId })
+            .then(res => {
+                console.log("item id ", res.data);
+                const newData = cartItems.filter(product => product._id !== itemId);
+                setCartItems(newData);
+            })
+            .then(err => {
+                console.log(err);
+            })
     };
 
     const incrementProduct = (_id) => {
-    const newData = cartItems.map((item) =>
-        item._id === _id ? { ...item, quantity: item.quantity + 1 } : item
-    );
+        const newData = cartItems.map((item) =>
+            item._id === _id ? { ...item, quantity: item.quantity + 1 } : item
+        );
 
-    const updatedItem = newData.find((item) => item._id === _id);
+        const updatedItem = newData.find((item) => item._id === _id);
 
-    if (updatedItem.quantity > updatedItem.available) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Product not Add',
-            text: `Total ${updatedItem.available} available. You can't add anymore !!`,
-        });
-        return;
-    }
+        if (updatedItem.quantity > updatedItem.available) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Product not Add',
+                text: `Total ${updatedItem.available} available. You can't add anymore !!`,
+            });
+            return;
+        }
 
-    setCartItems(newData);
-};
+        setCartItems(newData);
+    };
 
-const productString = JSON.stringify(cartItems);
-const navigate = useNavigate();
-const handleClick = () => {
-    navigate('/paymentPage', { state: { cartItems } }); 
-  };
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate('/paymentPage', { state: { cartItems } });
+    };
 
 
     return (
@@ -78,7 +76,7 @@ const handleClick = () => {
                     </div>
                 </div>
 
-                {cartItems.map((item,index) => ( 
+                {cartItems.map((item, index) => (
                     <div key={index} className="flex items-start gap-4 mb-4 bg-gray-100 pt-5 pb-5">
                         <img src={item.image} alt={item.name} className="w-20 h-20 ms-10" />
                         <div className="flex flex-col ms-10 me-10">
@@ -92,7 +90,7 @@ const handleClick = () => {
                                     onClick={() =>
                                         setCartItems((prevItems) =>
                                             prevItems.map((prevItem) =>
-                                                prevItem._id === item._id ? { ...prevItem, quantity: prevItem.quantity!==1 ? prevItem.quantity - 1 : prevItem.quantity } : prevItem
+                                                prevItem._id === item._id ? { ...prevItem, quantity: prevItem.quantity !== 1 ? prevItem.quantity - 1 : prevItem.quantity } : prevItem
                                             )
                                         )
                                     }
@@ -102,8 +100,8 @@ const handleClick = () => {
                                 </button>
                                 <span className='text-xl font-bold'>{item.quantity}</span>
                                 <button
-                                    onClick={() =>incrementProduct(item._id)
-                                        
+                                    onClick={() => incrementProduct(item._id)
+
                                     }
                                     className="px-2 py-1 text-xl font-bold bg-gray-100 rounded"
                                 >

@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AllContext } from '../../../Contexts/AllContext';
+import { ProductContext } from '../../../Contexts/ProductContext';
 
 const TemplatePrice = () => {
-    const {dispatch} = useContext(AllContext);
+    const {dispatch} = useContext(ProductContext);
   const [max,setMax] = useState(null);
   const [min,setMin] = useState(null);
 
@@ -12,7 +13,7 @@ const TemplatePrice = () => {
     dispatch({type:"FILTER_BY_PRICE",payload:{min:min,max:max}})
 
   }
-
+  
     return (    
         <>
   <div className="pt-4">

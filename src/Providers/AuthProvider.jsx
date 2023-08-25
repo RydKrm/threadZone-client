@@ -3,14 +3,14 @@ import { FacebookAuthProvider, GoogleAuthProvider, createUserWithEmailAndPasswor
 import { app } from "../firebase/firebase.config";
 import axios from 'axios';
 const googleProvider = new GoogleAuthProvider()
-const facebookProvider=new FacebookAuthProvider()
+const facebookProvider = new FacebookAuthProvider()
 
 export const AuthContext = createContext(null)
 const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(null);
-    const [userInfo,setUserInfo] = useState({})
+    const [userInfo, setUserInfo] = useState({})
 
     const createUser = (email, password) => {
         setLoading(true)
@@ -33,8 +33,8 @@ const AuthProvider = ({ children }) => {
     const googleSignIn = () => {
         return signInWithPopup(auth, googleProvider)
     }
-    const facebookSignIn=()=>{
-        return signInWithPopup(auth,facebookProvider)
+    const facebookSignIn = () => {
+        return signInWithPopup(auth, facebookProvider)
     }
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
@@ -47,16 +47,16 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
- useEffect(()=>{
-      axios.post('http://localhost:5000/findUserImformation',{email:user?.email})
-      .then((res)=>{
-     //   console.log("user Id =>  ",res.data);
-        setUserInfo(res.data);
-      })
-      .then((err)=>{
-        console.log(err)
-      })
-    },[user])
+    useEffect(() => {
+        axios.post('https://thread-zone-server.vercel.app/findUserImformation', { email: user?.email })
+            .then((res) => {
+                //   console.log("user Id =>  ",res.data);
+                setUserInfo(res.data);
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }, [user])
 
     const authInfo = {
         user,
@@ -72,7 +72,7 @@ const AuthProvider = ({ children }) => {
     }
 
 
-     
+
 
     return (
         <AuthContext.Provider value={authInfo}>

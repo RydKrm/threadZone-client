@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
 import { AllContext } from '../../../Contexts/AllContext';
+import { ProductContext } from '../../../Contexts/ProductContext';
 
 const TemplateSize = () => {
-  const {dispatch} = useContext(AllContext);
+  const {dispatch} = useContext(ProductContext);
 
   const setSize = (e)=>{
      dispatch({type:"SIZE_BY",payload:e.target.value});
     // console.log("size ->",e.target.value);  
   }
-
+   
     return (
         <div className='mt-5'>  
           <h3 className='text-xl mt-5 text-gray-800 mb-3 uppercase font-medium'>Size</h3>

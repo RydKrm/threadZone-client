@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../../../Providers/AuthProvider';
 
 const ShopRequest = () => {
     const [shops, setShops] = useState([]);
     const [error, setError] = useState('');
+    const { userInfo } = useContext(AuthContext);
+    console.log("testing shop ", userInfo);
 
     useEffect(() => {
         fetchShopData();
@@ -12,7 +15,7 @@ const ShopRequest = () => {
 
     const fetchShopData = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/shopStatus');
+            const response = await axios.get('https://thread-zone-server.vercel.app/shopStatus');
             setShops(response.data);
             setError('');
         } catch (error) {
@@ -34,8 +37,10 @@ const ShopRequest = () => {
                 });
 
                 // Send the approval status to the server without any reason
-                await axios.put(`http://localhost:5000/updateStatus/${id}`, {
+                await axios.put(`https://thread-zone-server.vercel.app/updateStatus/${id}`, {
                     status: 'approve',
+                    userId: userInfo._id
+
                 });
 
             } else if (status === 'deny') {
@@ -59,7 +64,7 @@ const ShopRequest = () => {
                 }
 
                 // Send the deny reason to the server along with the status update
-                await axios.put(`http://localhost:5000/updateStatus/${id}`, {
+                await axios.put(`https://thread-zone-server.vercel.app/updateStatus/${id}`, {
                     status: 'deny',
                     reason: reason
                 });
